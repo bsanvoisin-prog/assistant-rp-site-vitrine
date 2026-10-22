@@ -1,0 +1,16 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# Assistant-RP — contenu complet du blog
+
+> Version longue de /llms.txt : le texte intégral de chaque article, pour les agents qui ont besoin du détail plutôt que des résumés.
+{% for post in collections.post | reverse %}
+## {{ post.data.title | safe }}
+
+{{ site.url }}{{ post.url }} — {{ post.data.date | readableDate }} — {{ post.data.author | safe }}
+
+{{ post.templateContent | stripTags | safe }}
+
+---
+{% endfor %}

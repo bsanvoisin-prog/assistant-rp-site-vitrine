@@ -4,11 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f7f4">
+{%- set metaDescription = description or excerpt or 'Le blog Assistant-RP : actualités, méthode et conseils pour les relations médias.' %}
+{%- set metaImage = site.url + (cover or '/assets/assistant-rp-logo.png') %}
+{%- set pageUrl = site.url + page.url %}
 <title>{{ title }} · Assistant-RP</title>
-<meta name="description" content="{{ description or 'Le blog Assistant-RP : actualités, méthode et conseils pour les relations médias.' }}">
+<meta name="description" content="{{ metaDescription }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ pageUrl }}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/blog.css">
+
+<meta property="og:site_name" content="Assistant-RP">
+<meta property="og:type" content="{{ type or 'website' }}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="{{ title }} · Assistant-RP">
+<meta property="og:description" content="{{ metaDescription }}">
+<meta property="og:url" content="{{ pageUrl }}">
+<meta property="og:image" content="{{ metaImage }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }} · Assistant-RP">
+<meta name="twitter:description" content="{{ metaDescription }}">
+<meta name="twitter:image" content="{{ metaImage }}">
+
+{%- if type == "article" %}
+<meta property="article:published_time" content="{{ date | isoDate }}">
+<meta property="article:author" content="{{ author }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ title | jsonify | safe }},
+  "description": {{ metaDescription | jsonify | safe }},
+  "datePublished": "{{ date | isoDate }}",
+  "author": { "@type": "Organization", "name": {{ author | jsonify | safe }} },
+  "publisher": { "@type": "Organization", "name": "Assistant-RP", "url": "{{ site.url }}" },
+  "mainEntityOfPage": "{{ pageUrl }}",
+  "image": "{{ metaImage }}"
+}
+</script>
+{%- endif %}
 </head>
 <body>
 

@@ -1,0 +1,17 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# Assistant-RP
+
+> Assistant-RP est un atelier IA pour les professionnels des relations médias : 41 modules pour transformer vos briefs et documents en livrables RP (communiqués, tribunes, dossiers de presse, ciblage de journalistes, veille, stratégie, préparation média, mesure de campagne).
+
+## Site
+
+- [Accueil]({{ site.url }}/) : présentation de l'atelier, des modules et des tarifs.
+- [Blog]({{ site.url }}/blog/) : méthode RP, actualité du produit, retours d'expérience.
+
+## Articles de blog
+{% for post in collections.post | reverse %}
+- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}) : {{ post.data.excerpt | safe }}
+{%- endfor %}
