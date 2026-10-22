@@ -1,0 +1,18 @@
+/* Repères discrets : couleurs de familles existantes, surfaces neutres. */
+[data-family="veille"]{--family-accent:var(--f-veille)}
+[data-family="strategie"]{--family-accent:var(--f-strategie)}
+[data-family="redaction"]{--family-accent:var(--f-redaction)}
+[data-family="diffusion"]{--family-accent:var(--f-diffusion)}
+[data-family="parole"]{--family-accent:var(--f-parole)}
+[data-family="social"]{--family-accent:var(--f-social)}
+[data-family]{--family-tint:color-mix(in srgb,var(--family-accent) 7%,white)}
+[data-family] .fam-item[aria-current="page"]{background:var(--family-tint);color:var(--family-accent)}
+[data-family] .page-head h1::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--family-accent);margin-right:12px;vertical-align:middle}
+[data-family] .page-head .badge:not(.badge-req):not(.badge-opt){color:var(--family-accent);background:var(--family-tint);border-color:transparent}
+[data-family] .mod .go,[data-family] .mod:hover .go{color:var(--family-accent)}
+[data-family] .progress-fill{background:var(--family-accent)}
+[data-family] [role="tab"][aria-selected="true"]{color:var(--family-accent)}
+[data-family] [role="tab"][aria-selected="true"]::after{background:var(--family-accent)}
+[data-family] .step[data-state="current"] .step-n{background:var(--family-tint);color:var(--family-accent);border-color:color-mix(in srgb,var(--family-accent) 30%,white)}
+
+[data-family] .mod-n{color:var(--family-accent)}

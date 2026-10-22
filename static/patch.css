@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Patch assistant-rp.com — 22/10/2026
+   Ajouts additifs au bundle existant (main.css non modifié) :
+   1. Témoignages (#temoignages) masqués — maquette non prête, cf. patch urgence précédent
+   2. Section "cibles" (3 profils à onglets) injectée dans .promise par patch.js
+   3. FAQ : 2 questions ajoutées, héritent du style existant de .faq (aucune règle requise ici)
+   Tokens repris du site réel (voir :root dans main.css) : --ink #1a1a1a, --secondary #60615b,
+   --paper #f7f7f4, --white #fff, --line #ddded7, --soft #eeefe9, --citron #e2ff1a,
+   --citron-ink #17251b, --sans "Instrument Sans", --serif "Newsreader", --heading-sans "Outfit".
+   Deux valeurs ne sont pas tokenisées sur le site réel et sont reprises telles quelles :
+   #74766b (gris utilisé pour les em d'accentuation) et #0c5c43 (vert foncé des boutons citron).
+   ========================================================================== */
+
+#temoignages{display:none !important}
+
+.cibles-embed{
+  --muted:#74766b;
+  --forest:#0c5c43;
+  --forest-hover:#0a4e39;
+}
+.cibles-embed, .cibles-embed *{box-sizing:border-box}
+/* main.css masque les <br> dans les <p> de .promise (pensé pour l'ancien texte court) ;
+   on le réaffirme pour nos propres paragraphes (.scene notamment). */
+.promise .cibles-embed p br{display:inline}
+
+/* .promise sert de point d'ancrage : on neutralise sa mise en page flex d'origine
+   (pensée pour l'ancien contenu, un court texte + une liste de 3 mots) pour laisser
+   le nouveau composant gérer sa propre mise en page. */
+.promise:has(.cibles-embed){
+  display:block;
+  padding:88px 0 96px;
+  border-bottom:1px solid var(--line);
+}
+.promise:has(.cibles-embed) > .wrap{
+  max-width:1240px;margin:0 auto;padding:0 32px;
+}
+
+.cibles-embed .head{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+.cibles-embed .eyebrow{font-family:var(--sans);font-size:13px;color:var(--muted);letter-spacing:.02em;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.cibles-embed .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--citron);box-shadow:0 0 0 3px rgba(12,92,67,.12)}
+.cibles-embed h2{font-family:var(--heading-sans);font-weight:450;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;color:var(--ink)}
+.cibles-embed h2 em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;color:var(--muted);letter-spacing:-.02em}
+.cibles-embed .lead{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--secondary);max-width:440px;justify-self:end}
+
+.cibles-embed .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.cibles-embed .tab{
+  all:unset;cursor:pointer;padding:22px 24px;border-radius:18px;
+  background:rgba(255,255,255,.35);border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:6px;transition:background .25s,border-color .25s,transform .25s;
+  font-family:var(--sans);
+}
+.cibles-embed .tab:hover{background:rgba(255,255,255,.6)}
+.cibles-embed .tab:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.cibles-embed .tab .name{font-family:var(--serif);font-size:28px;color:var(--muted);transition:color .25s;display:flex;align-items:center;justify-content:space-between}
+.cibles-embed .tab .name::after{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid var(--muted);transition:all .25s}
+.cibles-embed .tab .tag{font-family:var(--sans);font-size:14px;color:var(--muted)}
+.cibles-embed .tab[aria-selected="true"]{background:var(--white);border-color:transparent;box-shadow:0 12px 40px -18px rgba(12,92,67,.35)}
+.cibles-embed .tab[aria-selected="true"] .name{color:var(--ink)}
+.cibles-embed .tab[aria-selected="true"] .name::after{background:var(--citron);border-color:var(--forest)}
+
+.cibles-embed .panel{background:rgba(255,255,255,.72);backdrop-filter:blur(8px);border-radius:28px;padding:48px;border:1px solid rgba(255,255,255,.7)}
+.cibles-embed .panel[hidden]{display:none}
+.cibles-embed .panel.enter{animation:cibles-in .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes cibles-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cibles-embed .panel.enter{animation:none}}
+
+.cibles-embed .intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.cibles-embed .intro h3{font-family:var(--heading-sans);font-weight:450;font-size:clamp(26px,2.8vw,34px);line-height:1.1;letter-spacing:-.03em;color:var(--ink)}
+.cibles-embed .scene{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.5;color:var(--secondary);padding-left:20px;border-left:2px solid var(--citron)}
+.cibles-embed .scene b{font-style:normal;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--ink);letter-spacing:.01em}
+
+.cibles-embed .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cibles-embed .pain{background:var(--white);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 0 var(--line)}
+.cibles-embed .pain .n{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.08em}
+.cibles-embed .pain h4{font-family:var(--heading-sans);font-weight:500;font-size:20px;line-height:1.2;letter-spacing:-.015em;color:var(--ink)}
+.cibles-embed .pain p{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--secondary)}
+.cibles-embed .fix{margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
+.cibles-embed .fix .lbl{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--forest);margin-bottom:10px;display:block}
+.cibles-embed .chips{display:flex;flex-wrap:wrap;gap:6px}
+.cibles-embed .chip{font-family:var(--sans);font-size:13px;padding:5px 10px;border-radius:999px;background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+
+.cibles-embed .outro{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:32px;flex-wrap:wrap}
+.cibles-embed .outro p{font-family:var(--heading-sans);font-size:19px;line-height:1.4;max-width:620px;letter-spacing:-.01em;color:var(--ink)}
+.cibles-embed .cta{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 20px;border-radius:999px;background:var(--forest);color:var(--citron);font-family:var(--sans);font-weight:550;font-size:14px;text-decoration:none;white-space:nowrap;transition:background .2s}
+.cibles-embed .cta:hover{background:var(--forest-hover)}
+.cibles-embed .cta span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--citron);color:var(--forest)}
+.cibles-embed .cta small{color:#c9e3d6;font-weight:400;margin-left:2px}
+
+@media (max-width:900px){
+  .promise:has(.cibles-embed){padding:64px 0 72px}
+  .cibles-embed .head,.cibles-embed .intro{grid-template-columns:1fr;gap:20px}
+  .cibles-embed .lead{justify-self:start}
+  .cibles-embed .tab{padding:16px 18px}
+  .cibles-embed .tab .name{font-size:22px}
+  .cibles-embed .panel{padding:24px 18px;border-radius:22px}
+  .cibles-embed .pains{grid-template-columns:1fr}
+  .cibles-embed .scene{font-size:18px}
+  .cibles-embed .cta{white-space:normal}
+}
+
+@media (max-width:640px){
+  .promise:has(.cibles-embed) > .wrap{padding:0 16px}
+  .cibles-embed .tabs{gap:6px}
+  .cibles-embed .tab{padding:10px 8px;border-radius:14px;gap:2px}
+  .cibles-embed .tab .name{font-size:13.5px;line-height:1.2}
+  .cibles-embed .tab .name::after{width:7px;height:7px}
+  .cibles-embed .tab .tag{font-size:10.5px;line-height:1.25}
+}

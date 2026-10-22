@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Blog assistant-rp.com — styles propres aux pages statiques générées par Eleventy
+   (listing + articles). Réutilise les tokens définis dans /assets/main.css
+   (:root --ink, --secondary, --paper, --white, --line, --soft, --sans, --serif,
+   --heading-sans, --citron, --citron-ink). Les valeurs non tokenisées sur le
+   site réel (#74766b, #0c5c43) sont reprises telles quelles, comme pour le
+   patch de la section cibles.
+   ========================================================================== */
+
+:root{
+  --blog-muted:#74766b;
+  --blog-forest:#0c5c43;
+  --blog-forest-hover:#0a4e39;
+}
+
+body{background:var(--paper)}
+
+/* L'attribut HTML `hidden` n'est pas fiable sur un <svg> racine dans tous les
+   moteurs : on pilote la visibilité par classe plutôt que par attribut. */
+.menu-button .icon-close{display:none}
+.menu-button.is-open .icon-menu{display:none}
+.menu-button.is-open .icon-close{display:block}
+
+.blog-main{display:block;min-height:60vh}
+
+/* ---------- Listing ---------- */
+.blog-list{padding:72px 0 120px}
+.blog-list-head{max-width:640px;margin-bottom:56px}
+.blog-list-head .eyebrow{font-family:var(--sans);font-size:13px;color:var(--blog-muted);letter-spacing:.02em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.blog-list-head .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--citron);box-shadow:0 0 0 3px rgba(12,92,67,.12)}
+.blog-list-head h1{font-family:var(--heading-sans);font-weight:450;font-size:clamp(32px,4.5vw,48px);line-height:1.08;letter-spacing:-.03em;color:var(--ink)}
+.blog-list-head h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blog-muted)}
+
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s}
+.blog-card:hover{box-shadow:0 16px 40px -20px rgba(12,92,67,.35);transform:translateY(-2px)}
+.blog-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:var(--soft)}
+.blog-card-noimg{display:block;width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,var(--soft),#dfe6da)}
+.blog-card-body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px}
+.blog-card-date{font-family:var(--sans);font-size:12px;color:var(--blog-muted);letter-spacing:.03em}
+.blog-card-body h2{font-family:var(--heading-sans);font-weight:500;font-size:19px;line-height:1.25;letter-spacing:-.01em;color:var(--ink)}
+.blog-card-body p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--secondary);margin:0}
+.blog-empty{font-family:var(--sans);color:var(--secondary);font-size:15px}
+
+/* ---------- Article ---------- */
+.post{max-width:720px;padding:56px 0 120px}
+.post-back{margin-bottom:28px}
+.post-back a{font-family:var(--sans);font-size:14px;color:var(--blog-muted);text-decoration:none}
+.post-back a:hover{text-decoration:underline}
+.post-cover{width:100%;border-radius:20px;margin-bottom:32px;display:block;object-fit:cover;max-height:420px}
+.post-meta{font-family:var(--sans);font-size:13px;color:var(--blog-muted);letter-spacing:.02em;margin-bottom:10px}
+.post h1{font-family:var(--heading-sans);font-weight:450;font-size:clamp(28px,4vw,42px);line-height:1.12;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
+
+.post-body{font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--ink)}
+.post-body p{margin:0 0 24px}
+.post-body h2{font-family:var(--heading-sans);font-weight:500;font-size:24px;line-height:1.3;letter-spacing:-.015em;margin:40px 0 16px}
+.post-body h3{font-family:var(--heading-sans);font-weight:500;font-size:19px;line-height:1.3;margin:32px 0 12px}
+.post-body a{color:var(--blog-forest);text-decoration:underline;text-underline-offset:3px}
+.post-body ul,.post-body ol{margin:0 0 24px;padding-left:22px}
+.post-body li{margin-bottom:8px}
+.post-body blockquote{margin:0 0 24px;padding-left:20px;border-left:2px solid var(--citron);font-family:var(--serif);font-style:italic;color:var(--secondary)}
+.post-body img{max-width:100%;border-radius:14px;margin:8px 0 24px}
+.post-body code{background:var(--soft);padding:2px 6px;border-radius:6px;font-size:.9em}
+
+@media (max-width:900px){
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .blog-list{padding:48px 0 80px}
+  .blog-grid{grid-template-columns:1fr}
+  .post{padding:40px 0 80px}
+  .post-body{font-size:16px}
+}

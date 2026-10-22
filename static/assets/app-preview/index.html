@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connexion — Assistant RP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<main class="auth">
+  <div class="auth-inner">
+
+    <div class="auth-brand">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0C5C43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/>
+      </svg>
+      <span class="brand-name">Assistant RP</span>
+    </div>
+
+    <h1>Accès réservé</h1>
+    <p class="sub">Connectez-vous pour retrouver vos projets.</p>
+
+    <div class="auth-card">
+      <form class="auth-form" method="post" action="#" novalidate>
+
+        <div class="field">
+          <label class="label" for="login">Identifiant</label>
+          <div class="input-group">
+            <svg class="lead-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <input class="input" id="login" name="login" type="text"
+                   autocomplete="username" autocapitalize="none" spellcheck="false"
+                   placeholder="Votre identifiant" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Mot de passe</label>
+          <div class="input-group">
+            <svg class="lead-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input class="input" id="password" name="password" type="password"
+                   autocomplete="current-password" placeholder="Votre mot de passe" required>
+            <button class="trail-btn" type="button" data-reveal-for="password"
+                    aria-label="Afficher le mot de passe" aria-pressed="false">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Erreur serveur : retirer l'attribut hidden pour l'afficher.
+             role="alert" annonce le message aux lecteurs d'écran. -->
+        <p class="error-text" role="alert" hidden>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+          Identifiant ou mot de passe incorrect.
+        </p>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Entrer</button>
+      </form>
+    </div>
+
+    <p class="auth-foot">Vos identifiants vous sont remis par l'administrateur du site.</p>
+  </div>
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* Accueil : conserver la sobriété et le code couleur des familles. */
+:root{--accent-citron:#e2ff1a}
+.brand-art{display:block;position:relative;overflow:hidden;width:190px;aspect-ratio:805/169;flex-shrink:0}
+.brand-art img{position:absolute;max-width:none;width:123.851%;height:169.822%;left:-8.323%;top:-35.503%}
+.topbar-nav a[aria-current="page"]{position:relative;background:transparent}
+.topbar-nav a[aria-current="page"]::after{content:"";position:absolute;bottom:3px;left:12px;right:12px;height:3px;border-radius:3px;background:var(--accent-citron)}
+.search .search-submit{display:inline-flex;align-items:center;justify-content:center;width:40px;min-width:40px;height:40px;min-height:40px;padding:0;border-radius:9px;background:var(--brand);color:var(--accent-citron)}
+.search-arrow{display:inline-flex;align-items:center;justify-content:center;color:inherit;background:transparent}
+.search .search-submit:hover,.new-project:hover{background:var(--brand-600)}
+.search .search-submit:active,.new-project:active{background:var(--brand-700)}
+.new-project{background:var(--brand);color:var(--accent-citron);border-radius:9px}
+@media(max-width:600px){.brand-art{width:145px}}
+
+.new-project{--btn-h:44px;min-height:44px;padding:0 18px;font-size:var(--fs-base)}
+
+/* Identité actualisée pour les aperçus de la landing. */
+.brand-art{aspect-ratio:725/219;overflow:visible}
+.brand-art img{position:static;width:100%;height:auto;max-width:100%}

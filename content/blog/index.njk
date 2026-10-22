@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: "Blog"
+description: "Actualités, méthode et conseils pour les relations médias."
+---
+<section class="blog-list wrap">
+  <div class="blog-list-head">
+    <div class="eyebrow">Le blog Assistant-RP</div>
+    <h1>Ce qu’on apprend<br><em>en fabriquant l’atelier.</em></h1>
+  </div>
+
+  {% set posts = collections.post | reverse %}
+  {% if posts.length %}
+  <div class="blog-grid">
+    {% for post in posts %}
+    <a class="blog-card" href="{{ post.url }}">
+      {% if post.data.cover %}
+        <img src="{{ post.data.cover }}" alt="">
+      {% else %}
+        <span class="blog-card-noimg" aria-hidden="true"></span>
+      {% endif %}
+      <div class="blog-card-body">
+        <span class="blog-card-date">{{ post.data.date | readableDate }}</span>
+        <h2>{{ post.data.title }}</h2>
+        <p>{{ post.data.excerpt }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="blog-empty">Premier article en préparation — revenez bientôt.</p>
+  {% endif %}
+</section>

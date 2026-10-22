@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Communiqué de presse — Assistant RP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/accueil.css">
+<link rel="stylesheet" href="assets/navigation.css">
+<link rel="stylesheet" href="assets/familles.css">
+</head>
+<body data-family="redaction">
+<a class="skip" href="#main">Aller au contenu</a>
+
+<header class="topbar">
+  <a class="brand" href="tableau-de-bord.html" aria-label="Assistant-RP — Tableau de bord"><span class="brand-art"><img src="assets/logo-assistant-rp.png" alt="Assistant-RP" width="725" height="219"></span></a>
+  <span class="topbar-sep" aria-hidden="true"></span>
+  <div class="topbar-context">
+    <strong>Communiqué de presse</strong>
+    <span>Rédaction presse · Assistant Communiqué de Presse</span>
+  </div>
+
+  <div class="topbar-actions">
+    
+    <button class="doc-chip" type="button" data-state="empty">
+      <span class="dot" aria-hidden="true"></span> Aucun document
+    </button>
+    <div class="menu-wrap">
+      <button class="avatar-btn" type="button" data-menu-trigger aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">
+        <span class="avatar" aria-hidden="true">F</span>
+        <span class="avatar-name">fred</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="sr-only">Ouvrir le menu du compte</span>
+      </button>
+      <div class="menu" id="user-menu" hidden>
+        <p class="menu-label">fred@influactive.com</p>
+        
+        <hr>
+        <a href="#">Mon compte</a>
+        <a href="#">Préférences</a>
+        <hr>
+        <button class="danger" type="button">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" aria-label="Navigation du projet">
+    <div class="side-block">
+      <label class="side-label" for="project">Projet</label>
+      <select class="select project-switch" id="project">
+        <option selected>Thés Pagès</option>
+        <option>Fives Maintenance</option>
+        <option>Travaux courants</option>
+      </select>
+      <p class="project-meta">0 document · <a href="#">gérer</a></p>
+    </div>
+    <nav class="side-block primary-nav" aria-label="Navigation principale"><a class="primary-link" href="tableau-de-bord.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Tableau de bord</a><a class="primary-link" href="tableau-de-bord.html#projets"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Projets</a><button class="primary-link" type="button" aria-disabled="true" title="Écran à concevoir dans cette maquette"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Historique</button><button class="primary-link" type="button" aria-disabled="true" title="Écran à concevoir dans cette maquette"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16M9 4v16M14 4v16M18 4l3 16"/></svg>Bibliothèque</button></nav><nav class="side-block family-navigation" aria-label="Familles de modules"><p class="side-label">Les familles</p><ul class="fam-nav"><li style="--nav-family:var(--f-veille)"><details class="family-disclosure"><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search family-nav-icon" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span>Veille &amp; analyse</span><span class="count">7</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li><span class="module-preview">Revue de presse</span></li><li class="catalog-note">Autres modules à intégrer</li></ul></details></li><li style="--nav-family:var(--f-strategie)"><details class="family-disclosure"><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target family-nav-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><span>Stratégie &amp; pilotage</span><span class="count">6</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li><a href="famille.html">Vue de la famille</a></li><li><span class="module-preview">Stratégie RP</span></li><li><span class="module-preview">Priorisation 80/20</span></li><li><span class="module-preview">Rebond à chaud</span></li><li><span class="module-preview">Prise de brief</span></li><li><span class="module-preview">Mesure SYNAP / SCRP</span></li><li><span class="module-preview">Bilan de retombées</span></li></ul></details></li><li style="--nav-family:var(--f-redaction)"><details class="family-disclosure" open><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-line family-nav-icon" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"></path></svg><span>Rédaction presse</span><span class="count">13</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li><a href="module.html" aria-current="page">Communiqué de presse</a></li><li><span class="module-preview">Communiqué décalé</span></li><li><span class="module-preview">Levée de fonds</span></li><li class="catalog-note">Autres modules à intégrer</li></ul></details></li><li style="--nav-family:var(--f-diffusion)"><details class="family-disclosure"><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send family-nav-icon" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg><span>Diffusion</span><span class="count">3</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li><span class="module-preview">Communiqué décliné en posts</span></li><li><span class="module-preview">Relance presse</span></li><li class="catalog-note">Autres modules à intégrer</li></ul></details></li><li style="--nav-family:var(--f-parole)"><details class="family-disclosure"><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic family-nav-icon" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg><span>Prise de parole</span><span class="count">5</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li><span class="module-preview">Media training express</span></li><li class="catalog-note">Autres modules à intégrer</li></ul></details></li><li style="--nav-family:var(--f-social)"><details class="family-disclosure"><summary class="fam-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square family-nav-icon" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span>Réseaux sociaux</span><span class="count">6</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></summary><ul class="module-subnav"><li class="catalog-note">Modules à intégrer à la maquette</li></ul></details></li></ul></nav>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="page page-wide">
+
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="tableau-de-bord.html">Tableau de bord</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        <a href="famille.html">Rédaction presse</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        <span aria-current="page">Communiqué de presse</span>
+      </nav>
+
+      <div class="page-head" style="margin-bottom:var(--s5)">
+        <h1>Communiqué de presse</h1>
+        <p class="sub">Annonce officielle destinée aux médias. Structure 5W complète, ton factuel, prêt à diffuser aux rédactions.</p>
+
+        <div class="progress-bar">
+          <div class="progress-track">
+            <div class="progress-fill" data-progress-fill></div>
+          </div>
+          <span class="progress-val" data-progress-val>0 %</span>
+        </div>
+        <p class="hint" style="margin-top:6px" data-progress-hint role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="mod-layout">
+
+        <!-- ---------- Colonne formulaire ---------- -->
+        <div>
+          <div class="tabs" role="tablist" aria-label="Sections du module">
+            <button class="tab" role="tab" id="tab-brief" aria-controls="panel-brief" aria-selected="true" tabindex="0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+              Mon brief
+            </button>
+            <button class="tab" role="tab" id="tab-docs" aria-controls="panel-docs" aria-selected="false" tabindex="-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              Mes documents
+            </button>
+            <button class="tab" role="tab" id="tab-style" aria-controls="panel-style" aria-selected="false" tabindex="-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+              Mon style
+            </button>
+          </div>
+
+          <!-- Panneau : brief -->
+          <div class="tabpanel" role="tabpanel" id="panel-brief" aria-labelledby="tab-brief">
+            <form class="form-stack" data-brief-form novalidate>
+
+              <div class="field">
+                <div class="field-head">
+                  <label class="label" for="sujet">Sujet précis de l'annonce <span class="req" aria-hidden="true">*</span></label>
+                  <span class="badge badge-req">Obligatoire</span>
+                  <span class="hint">Ex : lancement, partenariat, nomination…</span>
+                </div>
+                <textarea class="textarea" id="sujet" name="sujet" maxlength="300" required
+                          aria-describedby="sujet-err"
+                          placeholder="Saisissez ici le sujet de votre communiqué de presse"></textarea>
+                <span class="counter" data-counter-for="sujet"></span>
+                <p class="error-text" id="sujet-err" hidden>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+                  Indiquez le sujet de l'annonce pour lancer la production.
+                </p>
+              </div>
+
+              <div class="field">
+                <div class="field-head">
+                  <label class="label" for="secteur">Secteur d'activité du client <span class="req" aria-hidden="true">*</span></label>
+                  <span class="badge badge-req">Obligatoire</span>
+                  <span class="hint">Ex : technologie, santé, tourisme…</span>
+                </div>
+                <input class="input" id="secteur" name="secteur" type="text" required
+                       aria-describedby="secteur-err secteur-hint" placeholder="Nom du secteur d'activité">
+                <p class="hint" id="secteur-hint">Plus le secteur est précis, plus la veille affine l'angle du communiqué.</p>
+                <p class="error-text" id="secteur-err" hidden>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+                  Renseignez le secteur d'activité.
+                </p>
+              </div>
+
+              <div class="field">
+                <div class="field-head">
+                  <label class="label" for="brief-client">Le brief de votre client</label>
+                  <span class="badge badge-opt">Facultatif</span>
+                </div>
+                <p class="hint">Sert de matière pour cette production seulement : il n'est pas rangé dans la base documentaire.</p>
+                <textarea class="textarea" id="brief-client" name="brief_client" style="min-height:140px"
+                          placeholder="Le mail, la note ou la fiche que vous avez reçus."></textarea>
+              </div>
+
+              <!-- Divulgation progressive : le reste est replié par défaut -->
+              <details class="disclosure">
+                <summary>
+                  <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                  Plus de détails — concurrents, cible médiatique, date de diffusion, « à propos »
+                </summary>
+                <div class="body">
+                  <div class="field">
+                    <label class="label" for="concurrents">Principaux concurrents</label>
+                    <input class="input" id="concurrents" type="text" placeholder="Trois noms suffisent">
+                  </div>
+                  <div class="field">
+                    <label class="label" for="cible">Cible médiatique visée</label>
+                    <input class="input" id="cible" type="text" placeholder="Presse quotidienne régionale, presse pro…">
+                  </div>
+                  <div class="field">
+                    <label class="label" for="date-diff">Date de diffusion souhaitée</label>
+                    <input class="input" id="date-diff" type="date">
+                  </div>
+                  <div class="field">
+                    <label class="label" for="apropos">Paragraphe « à propos » existant</label>
+                    <textarea class="textarea" id="apropos" placeholder="Collez le boilerplate habituel du client."></textarea>
+                  </div>
+                </div>
+              </details>
+
+              <div class="sticky-actions">
+                <button class="btn btn-primary btn-lg" type="submit" data-brief-submit>
+                  Produire le communiqué
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <button class="btn btn-secondary btn-lg" type="button">Enregistrer le brouillon</button>
+                <span class="save">Brouillon enregistré automatiquement</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Panneau : documents -->
+          <div class="tabpanel" role="tabpanel" id="panel-docs" aria-labelledby="tab-docs" hidden>
+            <div class="card card-pad">
+              <h2 style="font-size:var(--fs-lg)">Documents du projet</h2>
+              <p class="muted" style="margin-top:8px">Sélectionnez les pièces que ce communiqué doit utiliser. Elles restent rattachées au projet « Thés Pagès ».</p>
+              <div class="no-result" style="margin-top:var(--s5)">
+                <p>Aucun document dans ce projet pour l'instant.</p>
+                <button class="btn btn-secondary" type="button" style="margin-top:var(--s4)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>
+                  Déposer un document
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau : style -->
+          <div class="tabpanel" role="tabpanel" id="panel-style" aria-labelledby="tab-style" hidden>
+            <div class="card card-pad form-stack">
+              <div class="field">
+                <label class="label" for="ton">Ton du communiqué</label>
+                <select class="select" id="ton">
+                  <option selected>Factuel institutionnel (recommandé)</option>
+                  <option>Factuel, légèrement chaleureux</option>
+                  <option>Technique, destiné à la presse spécialisée</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="label" for="longueur">Longueur visée</label>
+                <select class="select" id="longueur">
+                  <option>Court — 1 800 signes</option>
+                  <option selected>Standard — 3 000 signes</option>
+                  <option>Long — 4 500 signes</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="label" for="charte">Charte éditoriale à appliquer</label>
+                <select class="select" id="charte">
+                  <option selected>Aucune</option>
+                  <option>Charte Influactive</option>
+                </select>
+                <p class="hint">Les chartes se rangent dans la bibliothèque et s'appliquent à tous les modules.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- Colonne latérale ---------- -->
+        <aside class="mod-aside" aria-label="Déroulé du module">
+          <div class="aside-card">
+            <p class="eyebrow">Ce qui va se passer</p>
+            <ol class="steps">
+              <li class="step" data-step data-state="current">
+                <span class="step-n" aria-hidden="true">1</span>
+                <span><strong>Brief</strong><p>Vous renseignez le sujet, le secteur et le contexte de l'annonce.</p></span>
+              </li>
+              <li class="step" data-step>
+                <span class="step-n" aria-hidden="true">2</span>
+                <span><strong>Veille sectorielle</strong><p>L'assistant regarde l'actualité du secteur sur six mois.</p></span>
+              </li>
+              <li class="step" data-step>
+                <span class="step-n" aria-hidden="true">3</span>
+                <span><strong>Rédaction</strong><p>Il structure un texte complet, prêt à envoyer aux rédactions.</p></span>
+              </li>
+              <li class="step" data-step>
+                <span class="step-n" aria-hidden="true">4</span>
+                <span><strong>Relecture</strong><p>Vous ajustez et validez avant diffusion.</p></span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="note">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+            </svg>
+            <span>
+              <strong>Bon à savoir</strong>
+              <p>Un communiqué produit sans document de référence reste correct, mais il ne reprend ni vos formulations ni le « à propos » du client.</p>
+            </span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+
+</body>
+</html>

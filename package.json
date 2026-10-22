@@ -1,0 +1,13 @@
+{
+  "name": "assistant-rp-site-vitrine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine assistant-rp.com + blog (Eleventy + Decap CMS)",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

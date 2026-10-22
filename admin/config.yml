@@ -1,0 +1,65 @@
+# === BACKEND À REMPLACER ===
+# Netlify propose encore "Git Gateway" dans son dashboard, mais Netlify le
+# documente lui-même comme déprécié ("new Git Gateway configurations are not
+# recommended") — on ne construit pas là-dessus pour une mise en place neuve.
+# À la place : DecapBridge (https://decapbridge.com), un service tiers
+# maintenu, pensé pour ça (connexion par e-mail/Google/Microsoft, pas besoin
+# de compte GitHub pour les rédacteurs), gratuit pour 3 sites / 10 personnes
+# — largement suffisant pour une équipe de 4.
+#
+# Remplace tout ce bloc "backend:" par celui que DecapBridge génère pour toi
+# après avoir créé un site chez eux et relié ce dépôt. Procédure complète
+# dans README.md.
+backend:
+  name: git-gateway # <- PLACEHOLDER, à remplacer par le bloc fourni par DecapBridge
+  branch: main
+
+media_folder: "content/blog/uploads"
+public_folder: "/blog/uploads"
+
+publish_mode: editorial_workflow
+# "editorial_workflow" ajoute un statut Brouillon / En relecture / Prêt à publier,
+# avec un espace de prévisualisation avant publication réelle. Supprimer cette ligne
+# si tu préfères publier directement sans étape de relecture.
+
+locale: "fr"
+
+collections:
+  - name: "blog"
+    label: "Articles de blog"
+    label_singular: "Article"
+    folder: "content/blog"
+    create: true
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - label: "Date de publication"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        picker_utc: true
+      - label: "Extrait"
+        name: "excerpt"
+        widget: "text"
+        hint: "2-3 phrases affichées sur la page de liste du blog."
+      - label: "Image de couverture"
+        name: "cover"
+        widget: "image"
+        required: false
+      - label: "Auteur"
+        name: "author"
+        widget: "string"
+        default: "L'équipe Assistant-RP"
+      - label: "Tags"
+        name: "tags"
+        widget: "hidden"
+        default: "post"
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"

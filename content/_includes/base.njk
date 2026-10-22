@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f7f4">
+<title>{{ title }} · Assistant-RP</title>
+<meta name="description" content="{{ description or 'Le blog Assistant-RP : actualités, méthode et conseils pour les relations médias.' }}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/assets/main.css">
+<link rel="stylesheet" href="/blog.css">
+</head>
+<body>
+
+<header id="top" class="site-header">
+<nav class="wrap navigation" aria-label="Navigation principale">
+  <a href="/#top" class="brand" aria-label="Assistant-RP, accueil">
+    <span class="rp-logo" role="img" aria-label="Assistant-RP"><img alt="" width="725" height="219" src="/assets/assistant-rp-logo.png"></span>
+  </a>
+  <div class="nav-links">
+    <a href="/#apercu">L’atelier</a>
+    <a href="/#modules">Les modules</a>
+    <a href="/#prix">Les prix</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+  </div>
+  <div class="nav-actions">
+    <a class="login" href="https://app.assistant-rp.com/">Se connecter</a>
+    <a class="button nav-signup" href="https://app.assistant-rp.com/">
+      <span class="cta-label">Créer mon compte</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+    </a>
+    <button class="menu-button" aria-label="Ouvrir le menu" aria-expanded="false">
+      <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+      <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+  </div>
+</nav>
+</header>
+
+<main class="blog-main">
+{{ content | safe }}
+</main>
+
+<footer class="wrap">
+  <div>
+    <a href="/#top" class="brand" aria-label="Assistant-RP, accueil">
+      <span class="rp-logo" role="img" aria-label="Assistant-RP"><img alt="" width="725" height="219" src="/assets/assistant-rp-logo.png"></span>
+    </a>
+    <span>© {{ site.year }} Assistant-RP</span>
+  </div>
+  <div>
+    <a href="mailto:contact@assistant-rp.com">Contact <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+  </div>
+</footer>
+
+<script src="/nav.js" defer></script>
+</body>
+</html>
