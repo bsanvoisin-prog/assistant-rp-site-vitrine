@@ -4,7 +4,7 @@ date: 2026-10-22
 excerpt: Un système de 41 modules organisés en cinq familles, de la rédaction du
   communiqué au bilan de campagne. Tour d'horizon concret de ce qu'Assistant-RP
   prend en charge dans le quotidien d'un attaché de presse.
-cover: /blog/uploads/assistant-rp-1-.jpg
+cover: /blog/uploads/assistant-rp-logo-actualise.jpg
 author: L'équipe Assistant-RP
 tags: post
 ---
