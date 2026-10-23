@@ -1,9 +1,10 @@
 /* ==========================================================================
-   Patch assistant-rp.com — 22/10/2026
+   Patch assistant-rp.com — 22/10/2026, mis à jour le 23/10/2026
    Ne modifie pas main.js. Injecte dans le DOM une fois le site React monté :
    1. Le composant "cibles" (3 profils à onglets) dans la section .promise
    2. Deux questions FAQ supplémentaires (Entreprise, engagement annuel)
-   3. Correction du texte "41 modules" -> "42 modules" partout où il apparaît
+   (Le correctif forçant l'affichage de "42 modules" a été retiré le
+   23/10/2026 : décision d'équipe de ne plus afficher de comptage précis.)
    ========================================================================== */
 (function () {
   "use strict";
@@ -21,7 +22,7 @@
     '<div class="eyebrow">Conçu pour celles et ceux qui font les relations médias</div>',
     '<h2 id="cibles-title">Trois façons d’exercer le métier.<em>Les mêmes journées trop courtes.</em></h2>',
     '</div>',
-    '<p class="lead">Choisissez votre quotidien. Voici ce qui vous prend du temps et ce que l’atelier prend en charge.</p>',
+    '<p class="lead">Choisissez votre quotidien. Voici ce qui vous prend du temps et ce que la plateforme prend en charge.</p>',
     '</div>',
 
     '<div class="tabs" role="tablist" aria-label="Profils">',
@@ -39,15 +40,15 @@
     '<div class="pains">',
     '<article class="pain"><span class="n">01</span><h4>Personne à qui déléguer</h4>',
     '<p>Premier jet, mise en forme, déclinaisons&nbsp;: sans junior, tout passe par vous. Même ce qui ne demande pas votre expertise.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Communiqué de presse</span><span class="chip">Titres et accroches presse</span><span class="chip">Communiqué décliné en posts</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Communiqué de presse</span><span class="chip">Titres et accroches presse</span><span class="chip">Communiqué décliné en posts</span></div></div></article>',
     '<article class="pain"><span class="n">02</span><h4>Les heures que personne ne paie</h4>',
     '<p>Votre forfait est fixe. Chaque heure passée à compiler une revue de presse ou à rédiger des relances grignote votre marge.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Revue de presse</span><span class="chip">Relance presse</span><span class="chip">Analyse de notoriété</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Revue de presse</span><span class="chip">Relance presse</span><span class="chip">Analyse de notoriété</span></div></div></article>',
     '<article class="pain"><span class="n">03</span><h4>Changer de client, changer de tête</h4>',
     '<p>D’un secteur à l’autre, il faut retrouver le contexte, le vocabulaire, le ton. Le brief est dans un mail, les éléments dans un autre.</p>',
-    '<div class="fix"><span class="lbl">L’atelier organise</span><div class="chips"><span class="chip">Un espace par client</span><span class="chip">Prise de brief</span><span class="chip">Dépôt de vos documents</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme organise</span><div class="chips"><span class="chip">Un espace par client</span><span class="chip">Prise de brief</span><span class="chip">Dépôt de vos documents</span></div></div></article>',
     '</div>',
-    '<div class="outro"><p>L’atelier prend la fabrication. Vous gardez le conseil, celui que vos clients vous paient.</p>',
+    '<div class="outro"><p>La plateforme prend la fabrication. Vous gardez le conseil, celui que vos clients vous paient.</p>',
     '<a class="cta" href="#prix">Voir l’offre Indépendant <small>59&nbsp;€/mois</small><span>↗</span></a></div>',
     '</div>',
 
@@ -60,10 +61,10 @@
     '<div class="fix"><span class="lbl">Un cadre commun pour l’équipe</span><div class="chips"><span class="chip">Communiqué de presse</span><span class="chip">Dossier de presse</span><span class="chip">Questions / réponses presse</span></div></div></article>',
     '<article class="pain"><span class="n">02</span><h4>Les recos qu’on ne facture pas</h4>',
     '<p>Appels d’offres, recommandations, propositions d’angles&nbsp;: un travail lourd, souvent gratuit, toujours urgent.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Prise de brief</span><span class="chip">Stratégie RP</span><span class="chip">Priorisation 80/20</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Prise de brief</span><span class="chip">Stratégie RP</span><span class="chip">Priorisation 80/20</span></div></div></article>',
     '<article class="pain"><span class="n">03</span><h4>L’actu n’attend pas le brief</h4>',
     '<p>Un sujet émerge, le client veut réagir. Il faut un angle, un texte et des relances dans l’heure, sans lâcher les autres comptes.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Rebond à chaud</span><span class="chip">Signaux faibles et risques</span><span class="chip">Relance presse</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Rebond à chaud</span><span class="chip">Signaux faibles et risques</span><span class="chip">Relance presse</span></div></div></article>',
     '</div>',
     '<div class="outro"><p>Un espace distinct par client, un cadre commun pour toute l’équipe. Vos seniors reviennent au conseil.</p>',
     '<a class="cta" href="#prix">Voir l’offre Agence <small>dès 99&nbsp;€/mois · 2 comptes</small><span>↗</span></a></div>',
@@ -75,15 +76,15 @@
     '<div class="pains">',
     '<article class="pain"><span class="n">01</span><h4>Un périmètre qui déborde</h4>',
     '<p>Presse, interne, réseaux sociaux, événements&nbsp;: une petite équipe couvre tout. Les RP passent après l’urgence du jour.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Communiqué de presse</span><span class="chip">Post LinkedIn</span><span class="chip">Communiqué décliné en posts</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Communiqué de presse</span><span class="chip">Post LinkedIn</span><span class="chip">Communiqué décliné en posts</span></div></div></article>',
     '<article class="pain"><span class="n">02</span><h4>Des porte-parole pressés</h4>',
     '<p>Vos dirigeants ont vingt minutes avant l’interview. Il leur faut l’essentiel&nbsp;: qui est le journaliste, les messages clés, les questions qui fâchent.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Fiche interlocuteur</span><span class="chip">Média training</span><span class="chip">Simulation d’appel</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Fiche interlocuteur</span><span class="chip">Média training</span><span class="chip">Simulation d’appel</span></div></div></article>',
     '<article class="pain"><span class="n">03</span><h4>Des experts qui écrivent pour des experts</h4>',
     '<p>La note technique fait quarante pages. Le journaliste veut une idée forte, trois chiffres et un exemple.</p>',
-    '<div class="fix"><span class="lbl">L’atelier prépare</span><div class="chips"><span class="chip">Dossier de presse</span><span class="chip">Tribune et avis d’expert</span><span class="chip">Titres et accroches presse</span></div></div></article>',
+    '<div class="fix"><span class="lbl">La plateforme prépare</span><div class="chips"><span class="chip">Dossier de presse</span><span class="chip">Tribune et avis d’expert</span><span class="chip">Titres et accroches presse</span></div></div></article>',
     '</div>',
-    '<div class="outro"><p>Vos sujets, votre contexte et vos références internes dans le même atelier. Moins d’allers-retours, des porte-parole mieux préparés.</p>',
+    '<div class="outro"><p>Vos sujets, votre contexte et vos références internes dans la même plateforme. Moins d’allers-retours, des porte-parole mieux préparés.</p>',
     '<a class="cta" href="#prix">Parler de l’offre Entreprise <span>↗</span></a></div>',
     '</div>',
 
@@ -158,19 +159,6 @@
     return true;
   }
 
-  function fixModuleCount() {
-    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
-    var node;
-    var changed = false;
-    while ((node = walker.nextNode())) {
-      if (node.nodeValue.indexOf("41 modules") !== -1) {
-        node.nodeValue = node.nodeValue.replace(/41 modules/g, "42 modules");
-        changed = true;
-      }
-    }
-    return changed;
-  }
-
   function patchBlogNavLink() {
     var navLinks = document.querySelector(".nav-links");
     if (!navLinks || navLinks.querySelector('a[href="/blog/"]')) return false;
@@ -184,7 +172,6 @@
   function runAll() {
     patchCibles();
     patchFaq();
-    fixModuleCount();
     patchBlogNavLink();
   }
 
