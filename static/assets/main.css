@@ -113,3 +113,45 @@
 @media(max-width:850px){
   .price-mid{min-height:0}
 }
+
+/* --- Hero visual : capture d'écran + cartes familles flottantes (23/10/2026) --- */
+.hero-shot{position:absolute;inset:0;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(26,26,26,.35),0 0 0 1px rgba(26,26,26,.06)}
+.hero-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
+.hero-chips{position:absolute;inset:0;pointer-events:none}
+.hero-chip{position:absolute;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:12px;padding:10px 15px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;box-shadow:0 18px 34px -14px rgba(26,26,26,.32),0 0 0 1px rgba(26,26,26,.05);animation:heroChipFloat 6.5s ease-in-out infinite}
+.hero-chip svg{color:var(--chip-color);flex-shrink:0}
+.hero-chip.chip-1{top:-7%;left:-9%;transform:rotate(-7deg);animation-delay:0s}
+.hero-chip.chip-2{top:9%;right:-11%;transform:rotate(6deg);animation-delay:.9s}
+.hero-chip.chip-3{top:45%;left:-13%;transform:rotate(5deg);animation-delay:1.8s}
+.hero-chip.chip-4{top:52%;right:-15%;transform:rotate(-5deg);animation-delay:2.7s}
+.hero-chip.chip-5{bottom:4%;left:-5%;transform:rotate(-4deg);animation-delay:3.6s}
+.hero-chip.chip-6{bottom:-8%;right:-3%;transform:rotate(7deg);animation-delay:4.5s}
+@keyframes heroChipFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@media(max-width:1150px){
+  .hero-chip{font-size:11px;padding:8px 12px;gap:7px;border-radius:10px}
+  .hero-chip svg{width:14px;height:14px}
+  .hero-chip.chip-1{left:-5%}
+  .hero-chip.chip-2{right:-6%}
+  .hero-chip.chip-3{left:-7%}
+  .hero-chip.chip-4{right:-8%}
+  .hero-chip.chip-5{left:-3%}
+  .hero-chip.chip-6{right:-2%}
+}
+@media(max-width:899px){
+  .hero-chip.chip-5,.hero-chip.chip-6{display:none}
+}
+@media(max-width:850px){
+  .hero-shot{border-radius:16px}
+  .hero-chip{font-size:10px;padding:7px 10px;gap:6px}
+  .hero-chip.chip-3,.hero-chip.chip-4{display:none}
+}
+@media(max-width:740px){
+  .hero-visual{display:flex;align-items:center;justify-content:center;margin-top:18px}
+  .hero-shot{inset:0;border-radius:14px}
+  .hero-chip{font-size:10px;padding:6px 9px;gap:5px;box-shadow:0 10px 22px -10px rgba(26,26,26,.3)}
+  .hero-chip.chip-1{top:2%;left:-4%}
+  .hero-chip.chip-2{top:13%;right:-6%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-chip{animation:none}
+}
