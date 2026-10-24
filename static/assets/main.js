@@ -3898,7 +3898,7 @@ function yk(){
           (0,R.jsxs)("div",{className:"agency-head",children:[
             (0,R.jsx)("h3",{children:"Agence"}),
             (0,R.jsx)("span",{children:"2 comptes inclus"})]}),
-          (0,R.jsx)("p",{children:"Une équipe, le même niveau d’exigence."}),
+          (0,R.jsx)("p",{children:"La même exigence, en équipe."}),
           (0,R.jsxs)("div",{className:"price",children:[
             (0,R.jsxs)("strong",{children:[n,(0,R.jsx)("span",{children:"€"})]}),
             (0,R.jsx)("span",{children:"/ mois"})]}),
