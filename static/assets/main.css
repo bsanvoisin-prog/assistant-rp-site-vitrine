@@ -179,7 +179,7 @@
 .book-banner{border-top:1px solid var(--line);background:var(--soft);padding:18px 0}
 .book-banner-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .book-banner-cover{width:34px;height:auto;border-radius:3px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.book-banner-row p{flex:1 1 320px;margin:0;font-size:13.5px;line-height:1.5;color:var(--secondary)}
+.book-banner-row p{flex:1 1 320px;margin:0;font-size:12.5px;line-height:1.5;color:var(--secondary)}
 .book-banner-row p strong{color:var(--ink);font-weight:600}
 .book-banner-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
 .book-banner-link:hover{text-decoration:underline;text-underline-offset:3px}
