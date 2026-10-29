@@ -1,0 +1,8 @@
+tarteaucitronjs 1.37.0 (MIT License — AmauriC)
+Source: https://registry.npmjs.org/tarteaucitronjs/-/tarteaucitronjs-1.37.0.tgz
+Vendored (self-hosted, no CDN) on 2026-10-29 for the Assistant RP tracking mission v2.1.
+Fichiers inclus (sous-ensemble minimal nécessaire) :
+  tarteaucitron.min.js, tarteaucitron.services.min.js (chargé par le coeur, non utilisé
+  pour ses recettes tierces : seul notre service "arpanalytics" est enregistré),
+  css/tarteaucitron.min.css, lang/tarteaucitron.fr.min.js (seule langue utilisée : FR).
+Ne pas mettre à jour sans revalider la recette de consentement.
