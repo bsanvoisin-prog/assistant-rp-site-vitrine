@@ -159,6 +159,68 @@
     return true;
   }
 
+  /* ------------------------------------------------------------------
+     Mission de tracking v2.1 (lot A) : pageview + cta_clicked.
+     Rien ici ne dépend de assistant-rp-tracking.js pour fonctionner sans
+     lui — window.arpAnalytics est simplement absent tant que le script
+     n'a pas chargé, et chaque appel est gardé en conséquence.
+     ------------------------------------------------------------------ */
+
+  function patchPageview() {
+    if (document.documentElement.getAttribute("data-pv-patched") === "1") return false;
+    if (!window.arpAnalytics) return false;
+    // Même bundle, deux pages statiques : on les distingue par le chemin,
+    // comme le fait déjà main.js lui-même pour choisir quoi rendre.
+    var surAtelier = location.pathname === "/atelier.html";
+    window.arpAnalytics.page({
+      content_id: surAtelier ? "atelier" : "accueil",
+      content_type: "page",
+      content_theme: surAtelier ? "interne" : "produit"
+    });
+    document.documentElement.setAttribute("data-pv-patched", "1");
+    return true;
+  }
+
+  // Un identifiant technique dérivé du texte visible du bouton/lien, pas un
+  // libellé marketing à maintenir à la main : il suit le bouton si son texte
+  // change, sans qu'il faille revenir ici.
+  function ctaId(el) {
+    var texte = (el.textContent || "").trim().toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 60);
+    return texte || "cta";
+  }
+
+  // La section englobante donne la position sans qu'il faille lister à la
+  // main chaque emplacement de bouton — robuste à une réorganisation de la
+  // page tant que les sections gardent un nom de classe.
+  function ctaPosition(el) {
+    var conteneur = el.closest("header, footer, section[class], .cibles-embed, .hero-cta, .final-cta");
+    if (!conteneur) return "non_classe";
+    var tag = conteneur.tagName;
+    if (tag === "HEADER") return "navigation";
+    if (tag === "FOOTER") return "pied_de_page";
+    var premiere = (conteneur.className || "").toString().trim().split(/\s+/)[0];
+    return premiere || "non_classe";
+  }
+
+  function patchCtaTracking() {
+    if (document.documentElement.getAttribute("data-cta-patched") === "1") return false;
+    // Un seul écouteur délégué, posé une fois pour toute la vie de la page :
+    // il couvre aussi les boutons injectés plus tard (patchCibles, FAQ...).
+    document.addEventListener("click", function (e) {
+      if (!window.arpAnalytics) return;
+      var el = e.target.closest(".login, .nav-signup, .button-citron, .button, .cta");
+      if (!el) return;
+      window.arpAnalytics.capture("cta_clicked", {
+        cta_id: ctaId(el),
+        position: ctaPosition(el)
+      });
+    }, true);
+    document.documentElement.setAttribute("data-cta-patched", "1");
+    return true;
+  }
+
   function patchBlogNavLink() {
     var navLinks = document.querySelector(".nav-links");
     if (!navLinks || navLinks.querySelector('a[href="/blog/"]')) return false;
@@ -169,10 +231,37 @@
     return true;
   }
 
+  // Mission de tracking v2.1 (§5.1) : « Gérer mes cookies » sur le site aussi
+  // (déjà posé côté blog, dans base.njk). Le pied de page React n'a pas de
+  // sélecteur dédié : on repère le groupe de liens légaux par la classe des
+  // boutons qu'il contient déjà, et on y glisse un bouton de plus, au même
+  // gabarit — sans toucher à main.js.
+  function patchCookiesFooter() {
+    var legal = document.querySelector("footer .legal-link");
+    if (!legal) return false;
+    var groupe = legal.parentElement;
+    if (groupe.querySelector(".legal-link-cookies")) return false;
+    var btn = document.createElement("button");
+    btn.className = "legal-link legal-link-cookies";
+    btn.type = "button";
+    btn.textContent = "Gérer mes cookies";
+    btn.onclick = function () {
+      if (window.tarteaucitron && window.tarteaucitron.userInterface) {
+        window.tarteaucitron.userInterface.openPanel();
+      }
+    };
+    var contact = groupe.querySelector('a[href^="mailto:"]');
+    groupe.insertBefore(btn, contact || null);
+    return true;
+  }
+
   function runAll() {
     patchCibles();
     patchFaq();
     patchBlogNavLink();
+    patchCookiesFooter();
+    patchPageview();
+    patchCtaTracking();
   }
 
   // Le site est une SPA React : le contenu n'existe pas encore au chargement du script.
