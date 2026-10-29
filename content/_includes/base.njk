@@ -45,6 +45,9 @@
 }
 </script>
 {%- endif %}
+<script src="/assets/tracking-config.js"></script>
+<script src="/tarteaucitron/tarteaucitron.min.js"></script>
+<script src="/assets/assistant-rp-tracking.js"></script>
 </head>
 <body>
 
@@ -88,10 +91,25 @@
     <a class="legal-link" href="/#mentions">Mentions légales</a>
     <a class="legal-link" href="/#confidentialite">Confidentialité</a>
     <a class="legal-link" href="/#cgu">Conditions générales d’utilisation</a>
+    <!-- Mission de tracking v2.1 (§5.1) : rouvre le panneau natif de
+         tarteaucitron, déjà initialisé en tête de page — pas une modale
+         maison qui en dupliquerait l'état. -->
+    <a class="legal-link" href="javascript:void(0)" onclick="window.tarteaucitron && window.tarteaucitron.userInterface && window.tarteaucitron.userInterface.openPanel()">Gérer mes cookies</a>
     <a href="mailto:contact@assistant-rp.com">Contact <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
   </div>
 </footer>
 
 <script src="/nav.js" defer></script>
+<script>
+  /* Mission de tracking v2.1, lot A : une seule catégorisation pour tout le
+     blog plutôt qu'un identifiant par article — suffisant pour les tableaux
+     de bord prévus (§11) et plus prudent au regard des catégories de charge
+     utile interdites (01_CONTRAT_TRACKING.json) que d'exporter un slug. */
+  window.arpAnalytics && window.arpAnalytics.page({
+    content_id: (location.pathname === '/blog/' ? 'blog_index' : 'blog_article'),
+    content_type: "{{ 'article' if type == 'article' else 'page' }}",
+    content_theme: 'blog'
+  });
+</script>
 </body>
 </html>
