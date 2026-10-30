@@ -91,6 +91,111 @@
     '</div></div>'
   ].join("");
 
+  /* Mentions légales / confidentialité / CGU — FABS PARTNERS immatriculée le
+     29/10/2026 (Kbis, RCS Paris 132 151 747). Contenu de premier jet, pas une
+     validation juridique : à relire (idéalement avec un avocat) avant toute
+     publication, en particulier le directeur de la publication, pris ici par
+     défaut comme le président (choix le plus sûr par défaut en droit
+     français, à confirmer ou corriger par Bruno s'il délègue ce rôle). */
+  var LEGAL_CONTENT = {
+    "Mentions légales": {
+      sections: [
+        ["Éditeur du site",
+          "FABS PARTNERS, société par actions simplifiée au capital social de 1 000 €, " +
+          "immatriculée au Registre du commerce et des sociétés de Paris sous le numéro " +
+          "132 151 747 (numéro d’identification européen FR7501.132151747), dont le siège " +
+          "social est situé 47 rue Vivienne, 75002 Paris. Président : Frédéric Paillon. " +
+          "Directeur de la publication : Frédéric Paillon, en sa qualité de président. " +
+          "Contact : contact@assistant-rp.com."],
+        ["Hébergement",
+          "Le site assistant-rp.com est hébergé par Netlify, Inc., 101 2nd Street, " +
+          "San Francisco, CA 94105, États-Unis (https://www.netlify.com)."],
+        ["Propriété intellectuelle",
+          "L’ensemble des contenus présents sur ce site (textes, visuels, logos, structure, " +
+          "code) est, sauf mention contraire, la propriété de FABS PARTNERS ou de ses " +
+          "partenaires, et protégé par le droit de la propriété intellectuelle. Toute " +
+          "reproduction, représentation ou réutilisation, totale ou partielle, sans " +
+          "autorisation écrite préalable, est interdite."]
+      ]
+    },
+    "Confidentialité": {
+      sections: [
+        ["Vos données",
+          "Dans le cadre de l’utilisation du site et de la plateforme Assistant-RP, nous " +
+          "traitons les données nécessaires à la création et à la gestion de votre compte " +
+          "(adresse email, organisation), au traitement de vos paiements — via notre " +
+          "prestataire Stripe, qui ne nous communique jamais vos coordonnées bancaires " +
+          "complètes — et, uniquement si vous y consentez, des données de mesure d’audience " +
+          "(pages consultées, actions réalisées) via PostHog, hébergé dans l’Union " +
+          "européenne. Ces données ne contiennent jamais le contenu de vos briefs, documents " +
+          "ou productions. Avec votre accord, certaines informations de compte sont " +
+          "également transmises à notre prestataire de gestion de la relation client, Brevo, " +
+          "à des fins de suivi commercial."],
+        ["Conservation et droits",
+          "Les données de compte sont conservées pendant la durée de la relation " +
+          "contractuelle et selon les obligations légales applicables. Les données de " +
+          "mesure d’audience, lorsque vous y consentez, sont conservées 180 jours maximum. " +
+          "Conformément au Règlement général sur la protection des données, vous disposez " +
+          "d’un droit d’accès, de rectification, d’effacement, de limitation et " +
+          "d’opposition sur vos données, ainsi que du droit de retirer votre consentement à " +
+          "tout moment sans remettre en cause la licéité du traitement antérieur. Pour " +
+          "exercer ces droits : contact@assistant-rp.com."],
+        ["Cookies",
+          "Lors de votre première visite, un bandeau vous permet d’accepter ou de refuser " +
+          "les cookies de mesure d’audience. Aucun cookie de ce type n’est déposé avant " +
+          "votre choix, et le service reste pleinement utilisable que vous acceptiez ou " +
+          "non. Vous pouvez modifier votre choix à tout moment via le lien « Gérer mes " +
+          "cookies » en pied de page."]
+      ]
+    },
+    "Conditions générales d’utilisation": {
+      sections: [
+        ["Objet et accès au service",
+          "Assistant-RP est une plateforme éditée par FABS PARTNERS, permettant aux " +
+          "professionnels des relations presse de produire des documents et contenus à " +
+          "l’aide de modules dédiés. L’accès est réservé aux personnes ayant créé un compte " +
+          "et souscrit à une offre payante ou à un essai, selon les conditions tarifaires en " +
+          "vigueur présentées sur ce site."],
+        ["Utilisation de la plateforme",
+          "Chaque utilisateur est responsable de la confidentialité de ses identifiants et " +
+          "de l’usage fait de son compte. Les documents et contenus déposés ou produits via " +
+          "la plateforme restent la propriété de l’utilisateur ou de son client ; FABS " +
+          "PARTNERS n’en revendique aucun droit, sous réserve des moyens techniques " +
+          "nécessaires à leur traitement par le service. Il est interdit d’utiliser la " +
+          "plateforme à des fins illicites ou de tenter d’en perturber le fonctionnement."],
+        ["Responsabilités et contact",
+          "FABS PARTNERS s’engage à apporter un soin raisonnable au bon fonctionnement du " +
+          "service, sans garantir une disponibilité ininterrompue. Sa responsabilité ne " +
+          "saurait être engagée en cas d’usage non conforme du service par l’utilisateur. " +
+          "Les présentes conditions sont soumises au droit français ; à défaut de résolution " +
+          "amiable, les tribunaux du ressort du siège social de FABS PARTNERS seront seuls " +
+          "compétents. Contact : contact@assistant-rp.com."]
+      ]
+    }
+  };
+
+  function patchLegalContent() {
+    var titre = document.getElementById("legal-title");
+    if (!titre) return false;
+    var contenu = LEGAL_CONTENT[titre.textContent.trim()];
+    if (!contenu) return false;
+    var corps = titre.closest(".legal-content");
+    if (!corps || corps.getAttribute("data-legal-patched") === "1") return false;
+    var notice = corps.querySelector(".legal-notice");
+    if (notice) notice.remove();
+    var sections = corps.querySelectorAll("section");
+    contenu.sections.forEach(function (paire, i) {
+      var section = sections[i];
+      if (!section) return;
+      var h3 = section.querySelector("h3");
+      var p = section.querySelector("p");
+      if (h3) h3.textContent = paire[0];
+      if (p) p.textContent = paire[1];
+    });
+    corps.setAttribute("data-legal-patched", "1");
+    return true;
+  }
+
   var FAQ_EXTRA = [
     {
       q: "Un engagement annuel est-il proposé&nbsp;?",
@@ -260,6 +365,7 @@
     patchFaq();
     patchBlogNavLink();
     patchCookiesFooter();
+    patchLegalContent();
     patchPageview();
     patchCtaTracking();
   }
