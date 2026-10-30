@@ -28,11 +28,11 @@
  * production. Voir 03_RAPPORT_LIVRAISON.md, lot A : "en attente d'accès".
  */
 window.ARP_TRACKING_CONFIG = {
-  projectToken: '',                 // <- jeton "phc_..." du projet PostHog EU de TEST (recette du site)
-  environment: 'staging',           // 'staging' en recette, 'production' seulement après validation
+  projectToken: 'phc_upUJDu79MVawvhiFTbUUu47sWjdwTm5UjUSeGpmo8CB3',
+  environment: 'production',
   surface: 'site',
   privacyUrl: 'https://assistant-rp.com/#confidentialite',
-  consentCookieName: 'arp_consent_staging',
-  cookieDomain: '',                 // '' = cookie limité à cet hôte ; NE PAS mettre '.assistant-rp.com' en recette
-  crossSubdomainCookie: false,      // true uniquement pour le futur parcours de production site + app
+  consentCookieName: 'arp_consent_production',
+  cookieDomain: '',
+  crossSubdomainCookie: false
 };
