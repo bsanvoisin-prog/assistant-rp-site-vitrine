@@ -106,3 +106,60 @@
   .cibles-embed .tab .name::after{width:7px;height:7px}
   .cibles-embed .tab .tag{font-size:10.5px;line-height:1.25}
 }
+
+/* =============================================================
+   ASSISTANT RP — SITE VITRINE — BOUTONS COOKIES VERTS
+   À ajouter à la FIN de static/patch.css, sans remplacer son contenu.
+   Couleurs uniquement. Aucune modification du consentement ou du JS.
+   Retirer ce bloc complet pour annuler ce correctif.
+   ============================================================= */
+
+/* Même couleur pour accepter et refuser. Mise en page inchangée. */
+html body #tarteaucitronRoot :is(
+  #tarteaucitronPersonalize,
+  #tarteaucitronPersonalize2,
+  #tarteaucitronAllDenied2,
+  .tarteaucitronAllow,
+  .tarteaucitronDeny,
+  #tarteaucitronSaveButton
+) {
+  background: #176b46 !important;
+  border-color: #176b46 !important;
+  color: #fff !important;
+}
+
+/* Même effet de survol pour les deux choix. */
+html body #tarteaucitronRoot :is(
+  #tarteaucitronPersonalize,
+  #tarteaucitronPersonalize2,
+  #tarteaucitronAllDenied2,
+  .tarteaucitronAllow,
+  .tarteaucitronDeny,
+  #tarteaucitronSaveButton
+):hover {
+  background: #105235 !important;
+  border-color: #105235 !important;
+  color: #fff !important;
+}
+
+/* Conserver les pictogrammes lisibles, sans modifier leur état. */
+html body #tarteaucitronRoot :is(
+  #tarteaucitronPersonalize,
+  #tarteaucitronPersonalize2,
+  #tarteaucitronAllDenied2,
+  .tarteaucitronAllow,
+  .tarteaucitronDeny,
+  #tarteaucitronSaveButton
+) span,
+html body #tarteaucitronRoot :is(
+  #tarteaucitronPersonalize,
+  #tarteaucitronPersonalize2,
+  #tarteaucitronAllDenied2,
+  .tarteaucitronAllow,
+  .tarteaucitronDeny,
+  #tarteaucitronSaveButton
+) span::before {
+  color: inherit !important;
+}
+
+/* FIN — ASSISTANT RP — SITE VITRINE — BOUTONS COOKIES VERTS */
