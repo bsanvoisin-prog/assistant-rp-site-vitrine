@@ -196,6 +196,36 @@
     return true;
   }
 
+  // Bug signalé (3/11) : "Confidentialité" ne fait rien quand on y arrive
+  // par un lien externe. Cause : les mentions légales ne sont qu'un état
+  // React ouvert au clic (onClick:()=>o("confidentialite")) — il n'existe
+  // aucune vraie ancre #confidentialite dans la page, donc /#confidentialite
+  // (utilisé par le bandeau de cookies comme lien "Politique de
+  // confidentialité", et par le pied de page du blog) ne fait que recharger
+  // l'accueil sans rien ouvrir. Plutôt que de modifier main.js, on détecte le
+  // hash au chargement et on déclenche un vrai clic sur le bon bouton du pied
+  // de page : React reçoit l'évènement comme si l'utilisateur avait cliqué.
+  var HASH_VERS_LIBELLE = {
+    "#mentions": "Mentions légales",
+    "#confidentialite": "Confidentialité",
+    "#cgu": "Conditions générales d’utilisation"
+  };
+
+  function patchOuvrirDepuisHash() {
+    if (document.documentElement.getAttribute("data-hash-legal-done") === "1") return false;
+    var libelle = HASH_VERS_LIBELLE[location.hash];
+    if (!libelle) return false;
+    var boutons = document.querySelectorAll("footer button.legal-link");
+    var cible = null;
+    for (var i = 0; i < boutons.length; i++) {
+      if (boutons[i].textContent.trim() === libelle) { cible = boutons[i]; break; }
+    }
+    if (!cible) return false; // pied de page pas encore monté : on retente au prochain passage
+    document.documentElement.setAttribute("data-hash-legal-done", "1");
+    cible.click();
+    return true;
+  }
+
   var FAQ_EXTRA = [
     {
       q: "Un engagement annuel est-il proposé&nbsp;?",
@@ -366,6 +396,7 @@
     patchBlogNavLink();
     patchCookiesFooter();
     patchLegalContent();
+    patchOuvrirDepuisHash();
     patchPageview();
     patchCtaTracking();
   }
@@ -384,97 +415,3 @@
     setTimeout(runAll, ms);
   });
 })();
-
-/* =====================================================================
- * ASSISTANT RP — CORRECTIF LIEN CONFIDENTIALITÉ — V1
- * À AJOUTER À LA FIN de static/patch.js du SITE VITRINE.
- * Ne remplace pas les correctifs déjà présents. Ne pas ajouter <script>.
- *
- * Le bundle fourni lit #confidentialite uniquement au premier montage.
- * Le lien tarteaucitron ne recharge pas la page lors d'un changement
- * de fragment sur la même page. On réutilise donc le bouton Confidentialité
- * du pied de page, déjà raccordé à l'état React et au dialogue natif.
- *
- * Aucun appel à PostHog. Aucun choix de consentement changé.
- * Aucun cookie ou stockage modifié par ce correctif.
- * Le bandeau/panneau reste derrière le dialogue natif. Il redevient
- * accessible à la fermeture de la fenêtre légale.
- * ===================================================================== */
-;(function arpPrivacyLinkFix() {
-  'use strict';
-
-  if (window.__arpPrivacyLinkFixV1) return;
-  window.__arpPrivacyLinkFixV1 = true;
-
-  function getPrivacyButton() {
-    var buttons = document.querySelectorAll('footer button.legal-link');
-
-    for (var i = 0; i < buttons.length; i += 1) {
-      var label = (buttons[i].textContent || '').trim().toLowerCase();
-
-      if (label === 'confidentialité' || label === 'confidentialite') {
-        return buttons[i];
-      }
-    }
-
-    return null;
-  }
-
-  function isSamePagePrivacyUrl() {
-    var tac = window.tarteaucitron;
-    var raw = tac && tac.parameters && tac.parameters.privacyUrl;
-
-    if (!raw) return false;
-
-    try {
-      var target = new URL(raw, window.location.href);
-
-      return target.origin === window.location.origin &&
-        target.pathname === window.location.pathname &&
-        target.hash === '#confidentialite';
-    } catch (_) {
-      return false;
-    }
-  }
-
-  // Les boutons tarteaucitron sont créés après le HTML.
-  document.addEventListener('click', function (event) {
-    var target = event.target;
-
-    if (!(target instanceof Element)) return;
-
-    var trigger = target.closest(
-      '#tarteaucitronPrivacyUrl, #tarteaucitronPrivacyUrlDialog'
-    );
-
-    if (!trigger || !isSamePagePrivacyUrl()) return;
-
-    var privacyButton = getPrivacyButton();
-
-    if (!privacyButton) {
-      // Préserver la navigation habituelle si le site a changé.
-      console.warn(
-        '[Assistant RP] Bouton Confidentialité du pied de page introuvable.'
-      );
-      return;
-    }
-
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    // Le dialogue restitue ce focus à sa fermeture.
-    trigger.focus({ preventScroll: true });
-    privacyButton.click();
-  }, true);
-
-  // Échap ferme seulement la fenêtre légale au premier plan.
-  // Conserver le comportement natif du dialogue.
-  document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape' && event.keyCode !== 27) return;
-
-    if (document.querySelector('dialog.legal-modal[open]')) {
-      event.stopPropagation();
-    }
-  }, true);
-})();
-/* FIN DU CORRECTIF LIEN CONFIDENTIALITÉ — V1 */
