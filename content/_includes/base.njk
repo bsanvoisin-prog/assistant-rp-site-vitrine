@@ -51,7 +51,15 @@
 </head>
 <body>
 
-<header id="top" class="site-header">
+<!-- Ancre de retour en haut de page, séparée du header : le header est en
+     position sticky, et faire défiler jusqu'à un élément sticky est
+     ambigu selon les moteurs (sa position affichée est toujours "en haut"
+     une fois qu'on a scrollé, donc certains navigateurs — Firefox en
+     particulier — considèrent qu'il est déjà visible et ne défilent pas).
+     Cette ancre, elle, reste à sa vraie place dans le document. -->
+<div id="top"></div>
+
+<header class="site-header">
 <nav class="wrap navigation" aria-label="Navigation principale">
   <a href="/#top" class="brand" aria-label="Assistant-RP, accueil">
     <span class="rp-logo" role="img" aria-label="Assistant-RP"><img alt="" width="1585" height="377" src="/assets/assistant-rp-logo.png"></span>
