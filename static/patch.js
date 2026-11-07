@@ -226,6 +226,27 @@
     return true;
   }
 
+  // Bug signalé (7/11) : cliquer le logo (lien vers #top) depuis le bas de
+  // la page ne remonte pas en haut, sur Firefox. Même cause que le bug
+  // "Confidentialité" ci-dessus : #top ne correspond à aucune vraie ancre
+  // du DOM. React gère #apercu/#modules/#prix par un clic interne qui
+  // défile vers la bonne section ; le logo, lui, s'appuie sur la
+  // navigation native du navigateur vers un fragment qui n'existe nulle
+  // part, ce que les moteurs ne traitent pas tous pareil. On intercepte le
+  // clic et on force le défilement, sans toucher à main.js.
+  function patchLogoScrollTop() {
+    if (document.documentElement.getAttribute("data-top-patched") === "1") return false;
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href="#top"], a[href="/#top"]');
+      if (!a) return;
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (history.pushState) history.pushState(null, "", location.pathname);
+    });
+    document.documentElement.setAttribute("data-top-patched", "1");
+    return true;
+  }
+
   var FAQ_EXTRA = [
     {
       q: "Un engagement annuel est-il proposé&nbsp;?",
@@ -397,6 +418,7 @@
     patchCookiesFooter();
     patchLegalContent();
     patchOuvrirDepuisHash();
+    patchLogoScrollTop();
     patchPageview();
     patchCtaTracking();
   }
