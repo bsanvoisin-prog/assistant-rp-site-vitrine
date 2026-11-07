@@ -3,7 +3,11 @@
    générées par Eleventy. */
 (function () {
   "use strict";
-  var header = document.getElementById("top");
+  /* Le header lui-même, pas l'ancre #top : cette dernière a été déplacée sur
+     un élément séparé, neutre, pour que le lien "retour en haut" du logo
+     fonctionne sur tous les navigateurs (cf. base.njk). Le header reste
+     repérable par sa classe. */
+  var header = document.querySelector(".site-header");
   var menuButton = document.querySelector(".menu-button");
   var navLinks = document.querySelector(".nav-links");
 
