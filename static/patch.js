@@ -247,6 +247,34 @@
     return true;
   }
 
+  // Bug signalé (13/11) : les boutons qui mènent à la création de compte
+  // ("Créer un compte" en navigation et en pied de page, "Choisir
+  // Freelance", "Choisir Agence") pointent tous vers la racine de l'appli
+  // (https://app.assistant-rp.com/), qui affiche l'écran de connexion — pas
+  // vers /__souscrire. Cause : main.js n'a qu'une seule constante d'URL
+  // (oI) partagée par ces boutons ET par "Se connecter", donc on ne peut
+  // pas la corriger sans casser "Se connecter". On repère les boutons par
+  // leur texte visible (comme patchCtaTracking le fait déjà) et on
+  // réécrit leur href, sans toucher à main.js. "Demander une démo" et
+  // "Nous consulter" (mailto) ne sont pas dans la liste : ils doivent
+  // rester tels quels.
+  var LIBELLES_SOUSCRIPTION = ["Créer un compte", "Choisir Freelance", "Choisir Agence"];
+  var URL_SOUSCRIRE = "https://app.assistant-rp.com/__souscrire";
+
+  function patchLiensSouscription() {
+    var changed = false;
+    var liens = document.querySelectorAll("a.button");
+    for (var i = 0; i < liens.length; i++) {
+      var a = liens[i];
+      var texte = (a.textContent || "").trim();
+      if (LIBELLES_SOUSCRIPTION.indexOf(texte) === -1) continue;
+      if (a.getAttribute("href") === URL_SOUSCRIRE) continue;
+      a.setAttribute("href", URL_SOUSCRIRE);
+      changed = true;
+    }
+    return changed;
+  }
+
   var FAQ_EXTRA = [
     {
       q: "Un engagement annuel est-il proposé&nbsp;?",
@@ -419,6 +447,7 @@
     patchLegalContent();
     patchOuvrirDepuisHash();
     patchLogoScrollTop();
+    patchLiensSouscription();
     patchPageview();
     patchCtaTracking();
   }
