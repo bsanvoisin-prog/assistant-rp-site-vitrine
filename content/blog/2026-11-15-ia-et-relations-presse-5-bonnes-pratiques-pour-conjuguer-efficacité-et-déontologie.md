@@ -16,9 +16,9 @@ tags: post
 ---
 ## **L'IA dans les RP : une question de méthode et de responsabilité**
 
-L'intérêt de l'IA générative pour les relations presse est désormais bien identifié. Elle accélère le traitement documentaire, facilite la structuration des contenus et apporte de nouvelles possibilités d'analyse.
+L'intérêt de l'IA générative pour les relations presse est désormais entré sans nos pratiques. Elle accélère le traitement documentaire, facilite la structuration des contenus et apporte de nouvelles possibilités d'analyse.
 
-Son intégration dans les pratiques quotidiennes suppose néanmoins de définir des règles d'utilisation claires, partagées par les équipes et comprises par les clients.
+Son intégration dans nos usages quotidiens suppose néanmoins de définir des règles d'utilisation claires, partagées par les équipes et comprises par les clients.
 
 En mars 2026, le[ SYNAP (Syndicat national des attachés de presse et des conseillers en relations publics)](https://www.synap.org/ia-relations-medias) a publié une charte de bonnes pratiques pour l'usage de l'IA générative dans les RP. Fondée sur les principes de véracité, de confidentialité, d'indépendance, de loyauté et de responsabilité, elle propose un cadre professionnel pour accompagner cette évolution.
 
@@ -74,16 +74,14 @@ Dans une agence, les usages peuvent varier considérablement d'un collaborateur 
 
 La formation et l'actualisation régulière des connaissances complètent ce dispositif. Elles contribuent à développer des pratiques cohérentes au sein des équipes et à maintenir un niveau d'exigence adapté aux missions confiées.
 
-## **Une IA conçue pour les RP, avec les exigences du métier**
+## **Une IA pensée par des professionnels des RP, pour leurs pairs**
 
-L'intégration de l'intelligence artificielle dans les relations médias prend tout son sens lorsque les outils s'inscrivent dans les méthodes de travail des professionnels. 
+Ces bonnes pratiques ont également guidé notre démarche lors de la conception d'Assistant-RP. Nous sommes partis d'une conviction : pour être réellement utile aux attachés de presse, l'intelligence artificielle doit s'intégrer à leurs méthodes de travail et tenir compte des exigences de leur métier.
 
-C'est la démarche à l'origine d'**Assistant-RP**, une plateforme développée par des professionnels des relations presse, du journalisme et du marketing digital. Ses outils spécialisés accompagnent les attachés de presse dans leurs missions quotidiennes, de la rédaction à la veille et à l'analyse, en tenant compte des exigences éditoriales et déontologiques de la profession.
+C'est pourquoi nous avons conçu Assistant-RP à partir de notre expérience des relations médias, du journalisme et du marketing digital. Nos outils sont configurés pour répondre aux besoins quotidiens des professionnels, de la rédaction de contenus à la veille et à l'analyse des résultats.
 
-L'expérience métier reste centrale dans le choix des contenus, l'interprétation des résultats et la relation avec les journalistes. L'IA apporte une assistance à la production et à l'analyse. Son utilisation repose sur des méthodes, des règles de validation et des compétences professionnelles.
+Nous accordons une attention particulière à la fiabilité des informations, à la confidentialité des données et au respect des principes déontologiques des relations presse. La validation humaine reste au cœur de notre approche : l'IA prépare, structure et accompagne le travail, tandis que le professionnel conserve la maîtrise des contenus et des décisions.
 
-L'enjeu est d'intégrer l'IA dans les pratiques RP avec la même rigueur que celle appliquée aux informations transmises aux médias.
+Notre objectif est simple : **aider les attachés de presse à gagner en efficacité sans renoncer à leurs méthodes, à leur indépendance ni à leur exigence professionnelle.**
 
-Pour approfondir ces principes, consultez la[ charte de bonnes pratiques pour l'usage de l'IA générative dans les RP publiée par le SYNAP](https://www.synap.org/ia-relations-medias).
-
-*Découvrez[ Assistant-RP](https://assistant-rp.com/), la plateforme d'intelligence artificielle conçue par des professionnels des relations presse, ainsi que ses outils dédiés à la rédaction, à la veille et à l'analyse.*
+Cette approche rejoint les principes défendus par le SYNAP dans sa[ charte de bonnes pratiques pour l'usage de l'IA générative dans les RP](https://www.synap.org/ia-relations-medias), que nous invitons les professionnels à consulter.
