@@ -439,6 +439,65 @@
     return true;
   }
 
+  // Demande de Bruno (17/11) : intégrer les deux comptes créés pour
+  // Assistant-RP — LinkedIn (présence/crédibilité, discrète) et YouTube (les
+  // tutos produit, qui méritent mieux qu'une icône qu'on ne clique jamais).
+  // Pictos passés en revue : Lucide (déjà utilisé ailleurs sur le site pour
+  // la flèche et le menu) ne couvre pas les logos de marque. Récupérés sur
+  // Font Awesome Free (licence CC BY 4.0, usage libre) à la place — glyphes
+  // pleins "currentColor", cohérents avec l'esprit du reste du site.
+  var ICON_LINKEDIN = '<svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></svg>';
+  var ICON_YOUTUBE = '<svg viewBox="0 0 576 512" aria-hidden="true"><path fill="currentColor" d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z"/></svg>';
+
+  // Icônes dans le footer, à côté du logo/copyright (pas mélangées aux liens
+  // légaux de droite) : présence de base, cohérente sur toutes les pages.
+  function patchFooterSocial() {
+    var brand = document.querySelector("footer .brand");
+    if (!brand) return false;
+    var groupe = brand.parentElement;
+    if (!groupe || groupe.querySelector(".footer-social")) return false;
+    if (!document.getElementById("footer-social-style")) {
+      var style = document.createElement("style");
+      style.id = "footer-social-style";
+      style.textContent = ".footer-social{display:inline-flex;align-items:center;gap:12px;margin-left:4px}" +
+        ".footer-social a{display:inline-flex;color:var(--secondary,#60615b)}" +
+        ".footer-social a:hover{color:var(--ink,#1a1a1a)}" +
+        ".footer-social svg{width:16px;height:16px}";
+      document.head.appendChild(style);
+    }
+    var conteneur = document.createElement("span");
+    conteneur.className = "footer-social";
+    conteneur.innerHTML =
+      '<a href="https://www.linkedin.com/company/assistant-rp/" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur LinkedIn">' + ICON_LINKEDIN + '</a>' +
+      '<a href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur YouTube">' + ICON_YOUTUBE + '</a>';
+    groupe.appendChild(conteneur);
+    return true;
+  }
+
+  // Bandeau "Nos tutos en vidéo" sur le blog seulement (pas le footer tout
+  // seul : une icône en pied de page ne fait cliquer personne). Repris du
+  // même habillage que #pour-aller-plus-loin (masqué plus haut) — classes
+  // .book-banner déjà stylées, juste le contenu change. Inséré juste avant
+  // le footer, comme l'était le bandeau livre.
+  function patchBannerTutos() {
+    if (location.pathname.indexOf("/blog") !== 0) return false;
+    if (document.getElementById("tutos-video-banner")) return false;
+    var footer = document.querySelector("footer");
+    if (!footer || !footer.parentElement) return false;
+    var bandeau = document.createElement("aside");
+    bandeau.id = "tutos-video-banner";
+    bandeau.className = "book-banner";
+    bandeau.setAttribute("aria-label", "Ressource complémentaire");
+    bandeau.innerHTML =
+      '<div class="wrap book-banner-row">' +
+      '<span class="book-banner-cover" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;height:34px;color:#FF0000;box-shadow:none">' + ICON_YOUTUBE.replace('viewBox="0 0 576 512"', 'viewBox="0 0 576 512" width="26" height="23"') + '</span>' +
+      '<p><strong>Envie de voir plutôt que de lire&nbsp;? — </strong>nos tutos pour prendre en main Assistant RP sont sur notre chaîne YouTube.</p>' +
+      '<a class="book-banner-link" href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer">Voir les tutos <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>' +
+      '</div>';
+    footer.parentElement.insertBefore(bandeau, footer);
+    return true;
+  }
+
   function runAll() {
     patchCibles();
     patchFaq();
@@ -451,6 +510,8 @@
     patchPageview();
     patchCtaTracking();
     patchMasquerLivre();
+    patchFooterSocial();
+    patchBannerTutos();
   }
 
   // Le site est une SPA React : le contenu n'existe pas encore au chargement du script.
