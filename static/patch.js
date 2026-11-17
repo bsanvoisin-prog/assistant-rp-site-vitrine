@@ -126,66 +126,47 @@
     '<section><h3>15. Droit applicable, litiges et contact</h3><p>Les présentes conditions sont soumises au droit français. En cas de différend, les parties peuvent rechercher une solution amiable. Cette démarche ne fait pas obstacle aux mesures urgentes ni au respect des délais applicables.</p> <p>La juridiction compétente est déterminée selon les règles légales applicables, y compris celles qui régissent les contrats administratifs.</p> <p>Les demandes relatives au Service ou aux présentes conditions sont à adresser à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>.</p></section>',
   ].join("");
 
-  /* Mentions légales / confidentialité — FABS PARTNERS immatriculée le
-     29/10/2026 (Kbis, RCS Paris 132 151 747). Contenu de premier jet, pas une
-     validation juridique : à relire (idéalement avec un avocat) avant toute
-     publication, en particulier le directeur de la publication, pris ici par
-     défaut comme le président (choix le plus sûr par défaut en droit
-     français, à confirmer ou corriger par Bruno s'il délègue ce rôle).
-     L'entrée « Conditions générales d'utilisation » a été retirée d'ici le
-     17/11 : elle est maintenant gérée par CGU_HTML ci-dessus, dans
-     patchLegalContent(). */
-  var LEGAL_CONTENT = {
-    "Mentions légales": {
-      sections: [
-        ["Éditeur du site",
-          "FABS PARTNERS, société par actions simplifiée au capital social de 1 000 €, " +
-          "immatriculée au Registre du commerce et des sociétés de Paris sous le numéro " +
-          "132 151 747 (numéro d’identification européen FR7501.132151747), dont le siège " +
-          "social est situé 47 rue Vivienne, 75002 Paris. Président : Frédéric Paillon. " +
-          "Directeur de la publication : Frédéric Paillon, en sa qualité de président. " +
-          "Contact : contact@assistant-rp.com."],
-        ["Hébergement",
-          "Le site assistant-rp.com est hébergé par Netlify, Inc., 101 2nd Street, " +
-          "San Francisco, CA 94105, États-Unis (https://www.netlify.com)."],
-        ["Propriété intellectuelle",
-          "L’ensemble des contenus présents sur ce site (textes, visuels, logos, structure, " +
-          "code) est, sauf mention contraire, la propriété de FABS PARTNERS ou de ses " +
-          "partenaires, et protégé par le droit de la propriété intellectuelle. Toute " +
-          "reproduction, représentation ou réutilisation, totale ou partielle, sans " +
-          "autorisation écrite préalable, est interdite."]
-      ]
-    },
-    "Confidentialité": {
-      sections: [
-        ["Vos données",
-          "Dans le cadre de l’utilisation du site et de la plateforme Assistant-RP, nous " +
-          "traitons les données nécessaires à la création et à la gestion de votre compte " +
-          "(adresse email, organisation), au traitement de vos paiements — via notre " +
-          "prestataire Stripe, qui ne nous communique jamais vos coordonnées bancaires " +
-          "complètes — et, uniquement si vous y consentez, des données de mesure d’audience " +
-          "(pages consultées, actions réalisées) via PostHog, hébergé dans l’Union " +
-          "européenne. Ces données ne contiennent jamais le contenu de vos briefs, documents " +
-          "ou productions. Avec votre accord, certaines informations de compte sont " +
-          "également transmises à notre prestataire de gestion de la relation client, Brevo, " +
-          "à des fins de suivi commercial."],
-        ["Conservation et droits",
-          "Les données de compte sont conservées pendant la durée de la relation " +
-          "contractuelle et selon les obligations légales applicables. Les données de " +
-          "mesure d’audience, lorsque vous y consentez, sont conservées 180 jours maximum. " +
-          "Conformément au Règlement général sur la protection des données, vous disposez " +
-          "d’un droit d’accès, de rectification, d’effacement, de limitation et " +
-          "d’opposition sur vos données, ainsi que du droit de retirer votre consentement à " +
-          "tout moment sans remettre en cause la licéité du traitement antérieur. Pour " +
-          "exercer ces droits : contact@assistant-rp.com."],
-        ["Cookies",
-          "Lors de votre première visite, un bandeau vous permet d’accepter ou de refuser " +
-          "les cookies de mesure d’audience. Aucun cookie de ce type n’est déposé avant " +
-          "votre choix, et le service reste pleinement utilisable que vous acceptiez ou " +
-          "non. Vous pouvez modifier votre choix à tout moment via le lien « Gérer mes " +
-          "cookies » en pied de page."]
-      ]
-    }
+  /* Mentions légales et « Confidentialité » — texte définitif transmis par
+     Bruno le 17/11, qui remplace le premier jet (LEGAL_CONTENT, qui vivait
+     ici avant et qui citait un président et un capital social inventés).
+     Même mécanique que CGU_HTML au-dessus : remplacement intégral de
+     .legal-content, recopié ici tel quel (pas de dépendance réseau).
+     Le capital social reste un placeholder visible — Bruno l'a lui-même
+     laissé entre crochets dans son texte, donc pas de montant inventé ici
+     non plus. Le lien vers les CGU dans "Accès à l'application" utilise la
+     vraie adresse publique (assistant-rp.com/#cgu) et non
+     app.assistant-rp.com/cgu, qui n'existe pas (voir patchOuvrirDepuisHash
+     plus bas pour le mécanisme de cette ancre). "Confidentialité" reprend
+     le texte "Ce que deviennent vos données" de Bruno, identique à
+     vueDonnees() côté app (index.html) — un seul texte de référence pour
+     les deux. */
+  var MENTIONS_HTML = [
+    '<section><h3>Éditeur</h3><p>L’application app.assistant-rp.com est éditée par <b>FABS PARTNERS</b>, société par actions simplifiée au capital de <span style="color:#b34700;font-weight:600">[montant à préciser]</span> €, dont le siège social est situé au 47 rue Vivienne, 75002 Paris, France. La société est immatriculée au RCS de Paris sous le numéro 132 151 747. Son SIRET est le 132 151 747 00012.</p></section>',
+    '<section><h3>Contact et publication</h3><p>Contact de l’éditeur — <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>. Directeur de la publication — Augustin Garcia. Hébergeur — Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis.</p></section>',
+    '<section><h3>Accès à l’application</h3><p>L’accès à l’application est réservé aux titulaires d’un compte nominatif. Les conditions générales d’utilisation et de vente sont accessibles sur <a href="/#cgu">assistant-rp.com/#cgu</a>.</p></section>',
+    '<section><h3>Propriété intellectuelle</h3><p>L’ensemble des contenus présents sur ce site (textes, visuels, logos, structure, code) est, sauf mention contraire, la propriété de FABS PARTNERS ou de ses partenaires, et protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou réutilisation, totale ou partielle, sans autorisation écrite préalable, est interdite.</p></section>',
+  ].join("");
+
+  var DONNEES_HTML = [
+    '<section><h3>Qui traite vos données et pourquoi</h3><p>FABS PARTNERS est responsable des traitements nécessaires à la gestion des comptes, au support, à la sécurité de l’application, à la gestion des abonnements et à la facturation. Les données concernées comprennent les informations d’identification et de contact professionnel, les données de compte et d’abonnement, les informations de facturation et les données techniques nécessaires à la sécurité.</p> <p>Si vous souscrivez en votre nom, la gestion du compte et de l’abonnement repose sur l’exécution du contrat. Si votre organisation vous attribue un accès, la gestion du compte repose sur l’intérêt légitime de FABS PARTNERS à fournir le service convenu avec votre organisation. Le support et la sécurité reposent sur l’intérêt légitime d’assurer le fonctionnement du service et de protéger les comptes. La conservation des factures répond à une obligation légale. Les informations signalées comme obligatoires sont nécessaires à la création du compte ou à la gestion de l’abonnement, selon le cas.</p> <p>Lorsque FABS PARTNERS traite des données personnelles contenues dans les briefs et documents pour le compte d’un client, elle agit sur ses instructions, en qualité de sous-traitant, conformément à l’accord prévu à l’article 28 du RGPD.</p></section>',
+    '<section><h3>Ce qui est transmis au prestataire d’IA</h3><p>Lorsque vous lancez une génération, Assistant RP transmet au fournisseur du modèle le contenu du brief et le texte extrait des documents de référence utilisés pour la demande. L’extraction a lieu dans votre navigateur. Le fichier d’origine reste sur votre appareil. Le texte extrait est transmis et peut contenir des données personnelles ou des informations confidentielles.</p> <p>Pour les générations effectuées avec l’API commerciale d’Anthropic, ce prestataire indique que les données transmises et les résultats générés ne sont pas utilisés par défaut pour entraîner ses modèles. Selon ses conditions standard, Anthropic supprime les entrées et les sorties sous 30 jours, sauf exceptions prévues, notamment pour respecter la loi ou appliquer sa politique d’utilisation. L’option de conservation nulle n’est pas activée pour Assistant RP.</p></section>',
+    '<section><h3>Paiements et abonnements</h3><p>Stripe traite les paiements et les renouvellements d’abonnement. Les informations de carte saisies dans le parcours de paiement Stripe sont traitées par Stripe. FABS PARTNERS reçoit les informations nécessaires à la gestion de l’abonnement et à la facturation, notamment le montant, le statut du paiement et sa référence. Stripe décrit le traitement de ces données dans sa politique de confidentialité.</p></section>',
+    '<section><h3>Hébergement et transferts internationaux</h3><p>Les données de compte, les historiques et les bases documentaires sont hébergés chez Netlify aux États-Unis, selon la configuration d’Assistant RP. Les échanges avec l’application sont chiffrés en transit. Des administrateurs habilités disposent d’un accès technique pour l’exploitation, la sécurité et le support.</p> <p>Les requêtes de génération utilisent un routage mondial. Assistant RP ne garantit pas un traitement exclusivement dans l’Union européenne.</p> <p>Certains traitements impliquent des transferts de données personnelles hors de l’Espace économique européen. Vous pouvez demander des précisions ou une copie des garanties applicables à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>.</p></section>',
+    '<section><h3>Conservation et suppression</h3><p>Vous pouvez supprimer une production, un document ou un projet depuis l’application. À la date d’effet de la résiliation, l’accès au compte et aux documents prend fin. Exportez avant cette date les documents que vous souhaitez conserver. Les droits légaux ou contractuels de restitution restent applicables.</p> <p>Après la fermeture du compte, les documents sont supprimés de l’espace actif le lendemain, sous réserve des obligations légales ou contractuelles de restitution ou de conservation. Les durées applicables aux autres données de compte, aux journaux techniques et aux éventuelles sauvegardes sont de 15 jours. Les factures sont conservées pendant dix ans. Les données déjà transmises au fournisseur d’IA suivent les durées de conservation précisées ci-dessus.</p></section>',
+    '<section><h3>Cookies et mesure d’audience</h3><p>Le cookie de session maintient votre connexion pendant douze heures. Le panneau de gestion des cookies mémorise vos préférences.</p> <p>PostHog mesure, avec votre consentement, les contenus consultés et les étapes d’utilisation sur le site et dans l’application. Après connexion, les événements de navigation et d’utilisation peuvent être associés à votre compte pour analyser l’activation et la souscription. Cette mesure s’effectue sans enregistrement vidéo de session ni collecte du contenu de vos briefs, prompts ou documents.</p> <p>Vous pouvez refuser cette mesure ou retirer votre consentement à tout moment dans le panneau de gestion des cookies. Les durées de conservation de vos choix et des données de mesure d’audience sont de 12 mois.</p></section>',
+    '<section><h3>Vos droits</h3><p>Selon le traitement, vous pouvez demander l’accès à vos données, leur rectification, leur effacement, la limitation du traitement ou leur portabilité. Vous pouvez vous opposer à un traitement fondé sur un intérêt légitime ou retirer votre consentement à tout moment.</p> <p>Adressez votre demande à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>. Si elle concerne des données confiées par une organisation cliente qui en est responsable, adressez-vous à cette organisation. FABS PARTNERS l’assiste conformément à l’accord de sous-traitance. Vous pouvez également déposer une réclamation auprès de la CNIL.</p></section>',
+    '<section><h3>Avant de déposer un document</h3><p>Limitez les informations transmises à ce qui est nécessaire à votre demande. Pour un document sous embargo ou couvert par un accord de confidentialité, vérifiez que vos engagements autorisent la transmission de son texte à un prestataire externe. En cas de doute, utilisez une version expurgée ou travaillez sans document de référence.</p></section>',
+  ].join("");
+
+  // Les trois popins (CGU, Mentions légales, Confidentialité) utilisent
+  // désormais toutes le même mécanisme : remplacement intégral de
+  // .legal-content plutôt que la boucle h3/p sur des <section> déjà en
+  // place (LEGAL_CONTENT et son découpage par paires [titre, texte] sont
+  // devenus obsolètes le 17/11 et ont été retirés).
+  var WHOLESALE_HTML = {
+    "Conditions générales d’utilisation": CGU_HTML,
+    "Mentions légales": MENTIONS_HTML,
+    "Confidentialité": DONNEES_HTML
   };
 
   function patchLegalContent() {
@@ -195,29 +176,9 @@
     var corps = titre.closest(".legal-content");
     if (!corps || corps.getAttribute("data-legal-patched") === "1") return false;
 
-    // CGU : texte complet, pas les 2-3 sections que prévoyait la mise en
-    // page d'origine — on remplace tout le contenu plutôt que de boucler
-    // sur des <section> déjà en place (il y en a plus ici que dans les
-    // deux autres popins). Voir la note au-dessus de CGU_HTML.
-    if (libelle === "Conditions générales d’utilisation") {
-      corps.innerHTML = CGU_HTML;
-      corps.setAttribute("data-legal-patched", "1");
-      return true;
-    }
-
-    var contenu = LEGAL_CONTENT[libelle];
-    if (!contenu) return false;
-    var notice = corps.querySelector(".legal-notice");
-    if (notice) notice.remove();
-    var sections = corps.querySelectorAll("section");
-    contenu.sections.forEach(function (paire, i) {
-      var section = sections[i];
-      if (!section) return;
-      var h3 = section.querySelector("h3");
-      var p = section.querySelector("p");
-      if (h3) h3.textContent = paire[0];
-      if (p) p.textContent = paire[1];
-    });
+    var html = WHOLESALE_HTML[libelle];
+    if (!html) return false;
+    corps.innerHTML = html;
     corps.setAttribute("data-legal-patched", "1");
     return true;
   }
