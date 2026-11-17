@@ -462,7 +462,7 @@
       style.textContent = ".footer-social{display:inline-flex;align-items:center;gap:12px;margin-left:4px}" +
         ".footer-social a{display:inline-flex;color:var(--secondary,#60615b)}" +
         ".footer-social a:hover{color:var(--ink,#1a1a1a)}" +
-        ".footer-social svg{width:16px;height:16px}";
+        ".footer-social svg{width:20px;height:20px}";
       document.head.appendChild(style);
     }
     var conteneur = document.createElement("span");
