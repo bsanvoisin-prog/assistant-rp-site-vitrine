@@ -14,6 +14,16 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/blog.css">
+<!-- 17/11 : icônes LinkedIn/YouTube du footer. Les pages du blog ne chargent
+     jamais patch.js (c'est une autre sortie Eleventy, pas la SPA) — la même
+     règle que patch.js injecte en JS côté app est donc dupliquée ici en CSS
+     statique. Si .footer-social change d'un côté, la changer aussi ici. -->
+<style>
+.footer-social{display:inline-flex;align-items:center;gap:12px;margin-left:4px}
+.footer-social a{display:inline-flex;color:var(--secondary,#60615b)}
+.footer-social a:hover{color:var(--ink,#1a1a1a)}
+.footer-social svg{width:20px;height:20px}
+</style>
 
 <meta property="og:site_name" content="Assistant-RP">
 <meta property="og:type" content="{{ type or 'website' }}">
@@ -88,12 +98,34 @@
 {{ content | safe }}
 </main>
 
+<!-- 17/11 : bandeau "nos tutos en vidéo" avant le footer, sur toutes les
+     pages du blog. Même habillage que l'ancien bandeau livre côté app
+     (.book-banner, déjà dans main.css, masqué par patch.js sur la home) —
+     classes réutilisées, pas de nouveau style à maintenir. -->
+<aside class="book-banner" aria-label="Ressource complémentaire">
+  <div class="wrap book-banner-row">
+    <span class="book-banner-cover" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;height:34px;color:#FF0000;box-shadow:none">
+      <svg viewBox="0 0 576 512" width="26" height="23" aria-hidden="true"><path fill="currentColor" d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z"/></svg>
+    </span>
+    <p><strong>Envie de voir plutôt que de lire&nbsp;? — </strong>nos tutos pour prendre en main Assistant RP sont sur notre chaîne YouTube.</p>
+    <a class="book-banner-link" href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer">Voir les tutos <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+  </div>
+</aside>
+
 <footer class="wrap">
   <div>
     <a href="/#top" class="brand" aria-label="Assistant-RP, accueil">
       <span class="rp-logo" role="img" aria-label="Assistant-RP"><img alt="" width="1585" height="377" src="/assets/assistant-rp-logo.png"></span>
     </a>
     <span>© {{ site.year }} Assistant-RP</span>
+    <span class="footer-social">
+      <a href="https://www.linkedin.com/company/assistant-rp/" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur LinkedIn">
+        <svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur YouTube">
+        <svg viewBox="0 0 576 512" aria-hidden="true"><path fill="currentColor" d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z"/></svg>
+      </a>
+    </span>
   </div>
   <div>
     <a class="legal-link" href="/#mentions">Mentions légales</a>
