@@ -1,8 +1,15 @@
 /* ==========================================================================
-   Patch assistant-rp.com — 22/10/2026, mis à jour le 23/10/2026
+   Patch assistant-rp.com — 22/10/2026, mis à jour le 17/11/2026
    Ne modifie pas main.js. Injecte dans le DOM une fois le site React monté :
    1. Le composant "cibles" (3 profils à onglets) dans la section .promise
    2. Deux questions FAQ supplémentaires (Entreprise, engagement annuel)
+   3. (17/11) Les vraies CGU dans la popin "Conditions générales d'utilisation"
+      — l'ancien texte (LEGAL_CONTENT) était un premier jet jamais relu,
+      resté sans rapport avec les CGU définitives désormais utilisées côté
+      app (voir CGU_HTML plus bas). Fred s'en sert aussi comme adresse
+      trackable pour Brevo : assistant-rp.com/#cgu.
+   4. (17/11) Masque le bandeau "En complément" (livre aux Éditions Kawa) :
+      un article de blog couvre déjà le sujet, demande de Bruno.
    (Le correctif forçant l'affichage de "42 modules" a été retiré le
    23/10/2026 : décision d'équipe de ne plus afficher de comptage précis.)
    ========================================================================== */
@@ -91,12 +98,43 @@
     '</div></div>'
   ].join("");
 
-  /* Mentions légales / confidentialité / CGU — FABS PARTNERS immatriculée le
+  /* CGU définitives transmises par Bruno le 17/11 — remplacent le premier
+     jet qui vivait jusqu'ici dans LEGAL_CONTENT (voir plus bas) et qui
+     n'avait plus aucun rapport avec les CGU réellement en vigueur côté app
+     (app.assistant-rp.com/index.html, vueCGU()). Un seul texte de référence
+     maintenant, recopié ici tel quel plutôt que chargé à distance : pas de
+     dépendance réseau supplémentaire pour une popin. Injecté en remplaçant
+     tout .legal-content (pas seulement les h3/p existants comme pour les
+     deux autres popins) : il y a plus d'articles ici que la mise en page
+     d'origine n'en prévoyait. .legal-modal défile déjà (overflow:auto),
+     donc la longueur du texte ne casse rien. */
+  var CGU_HTML = [
+    '<section><h3>1. Éditeur et objet</h3><p>Assistant RP est une application accessible à l’adresse app.assistant-rp.com. Elle est éditée par <b>FABS PARTNERS</b>, société par actions simplifiée dont le siège social est situé au 47 rue Vivienne, 75002 Paris, immatriculée au RCS de Paris sous le numéro 132 151 747. Son SIRET est le 132 151 747 00012. Elle est désignée ci-après comme « l’Éditeur ».</p> <p>Les présentes conditions régissent la souscription et l’utilisation d’Assistant RP, ci-après « le Service ». Le Service est réservé à un usage professionnel ou institutionnel.</p> <p>Le « Client » est la personne physique ou morale qui souscrit le Service dans le cadre de son activité. L’« Utilisateur » est la personne physique à laquelle un compte nominatif est attribué. Le Client peut être lui-même Utilisateur.</p></section>',
+    '<section><h3>2. Souscription et accès au compte</h3><p>Le Client prend connaissance des présentes conditions et les accepte avant la souscription. Chaque Utilisateur accepte les conditions d’utilisation lors de l’activation de son compte. En cas de divergence, les stipulations du devis ou du contrat accepté prévalent sur les présentes conditions pour les points qu’elles règlent.</p> <p>L’accès se fait sur invitation. Chaque compte est nominatif. L’Utilisateur protège ses identifiants et signale sans délai tout accès suspect à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>. Le Client informe l’Éditeur lorsqu’un Utilisateur doit perdre son accès, notamment à la suite d’un départ ou d’un changement de mission.</p></section>',
+    '<section><h3>3. Description du Service</h3><p>Assistant RP assiste ses Utilisateurs dans leurs activités de relations presse. Selon la formule, il propose notamment des fonctions de rédaction de communiqués, tribunes et dossiers de presse, de veille, de préparation d’interviews, d’appui à la diffusion et de bilan de campagne.</p> <p>Le Service utilise un modèle d’intelligence artificielle fourni par un prestataire tiers. Les fonctionnalités, volumes et accès compris dans chaque offre sont précisés lors de la souscription ou dans le devis accepté.</p></section>',
+    '<section><h3>4. Formules, tarifs et paiement</h3><p>Les formules standard sont souscrites au mois, sans durée minimale au-delà du mois en cours.</p> <table style="width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px"><thead><tr><th style="text-align:left;padding:7px 10px;border-bottom:1px solid #ddded7">Formule</th><th style="text-align:left;padding:7px 10px;border-bottom:1px solid #ddded7">Tarif et accès inclus</th></tr></thead><tbody> <tr><td style="padding:7px 10px;border-bottom:1px solid #ddded7;font-weight:600">Freelance</td><td style="padding:7px 10px;border-bottom:1px solid #ddded7">59 € par mois pour un compte nominatif</td></tr> <tr><td style="padding:7px 10px;border-bottom:1px solid #ddded7;font-weight:600">Agence</td><td style="padding:7px 10px;border-bottom:1px solid #ddded7">99 € par mois pour deux comptes nominatifs, puis 29 € par mois par compte supplémentaire</td></tr> <tr><td style="padding:7px 10px;font-weight:600">Service intégré</td><td style="padding:7px 10px">Sur devis pour les grandes entreprises et les institutions publiques</td></tr></tbody></table> <p>Les tarifs des formules standard sont exprimés en euros hors taxe. Les modalités de paiement et l’échéance sont communiquées avant la souscription. Les formules standard se renouvellent chaque mois jusqu’à résiliation selon l’article 5. Sauf désaccord exprès du Client, un essai gratuit se transforme automatiquement en abonnement payant après la période d’essai de 7 jours. Annulable par le client via le bouton de son compte.</p> <p>Lorsque l’article L. 441-10 du Code de commerce s’applique, tout retard de paiement entraîne, dans les 10 jours qui suivent et sans rappel préalable, une suspension du service.</p> <p>Pour les offres sur devis, le prix, la durée, les modalités de paiement et les éventuelles conditions particulières de résiliation figurent dans le devis ou le contrat accepté. Les règles applicables à la commande publique prévalent lorsqu’elles s’imposent.</p></section>',
+    '<section><h3>5. Arrêt de l’abonnement et accès aux documents</h3><p>Le Client peut résilier une formule standard à tout moment en accédant à la gestion de son abonnement depuis l’application. La résiliation prend effet à la fin de sa durée d’engagement au cours duquel l’Éditeur reçoit la demande. Sous réserve des recours prévus à l’article 11 et des règles impératives applicables. Aucun abonnement n’est facturé pour les mois ou année suivants.</p> <p>Après cette date, le compte n’est plus accessible, il est de la responsabilité du client de sauvegarder et exporter les documents qu’il juge utiles de conserver. Le Client peut demander la clôture définitive de son compte. La clôture, la restitution des documents et leur suppression suivent les modalités prévues à l’article 13.</p></section>',
+    '<section><h3>6. Documents et informations transmis</h3><p>Le Client conserve les droits qu’il détient sur les textes, documents, briefs et autres éléments transmis. Il s’assure qu’il dispose des droits, autorisations et, lorsque nécessaire, du fondement juridique requis pour les transmettre et les traiter dans le Service. Cette obligation s’applique notamment aux documents de ses propres clients et aux coordonnées de journalistes.</p> <p>Le Client et ses Utilisateurs s’abstiennent de transmettre des données de santé, des informations bancaires, des identifiants confidentiels ou des documents couverts par un secret dont les règles excluent le recours aux prestataires du Service. Avant de déposer un document sous embargo, ils vérifient que ses conditions de confidentialité autorisent ce traitement.</p></section>',
+    '<section><h3>7. Confidentialité</h3><p>L’Éditeur protège la confidentialité des documents transmis et des résultats enregistrés. Il limite leur accès aux personnes habilitées et aux prestataires dont l’intervention est nécessaire à la fourniture, à la sécurisation ou au support du Service. Ces personnes et prestataires sont soumis à des obligations de confidentialité adaptées à leur intervention. Les communications imposées par la loi restent possibles.</p> <p>Si l’Éditeur constate un accès ou une divulgation non autorisés affectant les documents du Client, il l’en informe sans délai injustifié. Il prend les mesures relevant de son périmètre pour contenir l’incident et communique les informations disponibles utiles à sa gestion.</p></section>',
+    '<section><h3>8. Résultats générés et validation avant diffusion</h3><p>Les résultats d’Assistant RP sont des propositions de rédaction ou d’analyse. Ils peuvent contenir des erreurs, des omissions, des informations obsolètes ou des références inexistantes. L’Éditeur ne garantit aucune publication, retombée médiatique ou performance de campagne.</p> <p>Avant tout envoi, partage externe ou publication, le Client s’assure qu’une personne habilitée vérifie et valide le contenu final. Cette vérification porte notamment sur les faits, chiffres, noms, sources, citations, droits des tiers et embargos. Une citation attribuée à un porte-parole doit être vérifiée à la source ou approuvée par une personne habilitée.</p> <p>Le Client décide du contenu final, des destinataires et de la date de diffusion. Lorsqu’un module offre une fonction d’envoi ou de publication, l’Utilisateur vérifie le contenu et les destinataires avant de déclencher l’action.</p> <p>Sous réserve des droits des tiers, le Client peut utiliser, modifier et diffuser les résultats générés pour lui, y compris à des fins commerciales. L’Éditeur ne revendique aucun droit exclusif sur ces résultats. Des résultats similaires peuvent être générés pour d’autres utilisateurs.</p></section>',
+    '<section><h3>9. Règles d’utilisation et droits sur le Service</h3><p>Le Client et les Utilisateurs s’engagent à utiliser le Service à des fins licites. Ils s’abstiennent notamment de partager ou revendre un accès, de contourner une mesure de sécurité, d’accéder au compte ou aux documents d’un tiers, de procéder à des extractions abusives ou d’utiliser le Service pour diffuser des contenus illicites.</p> <p>L’Éditeur et ses concédants conservent leurs droits sur le logiciel, son interface et les éléments qui composent le Service. La souscription donne un droit d’accès et d’usage dans les limites de l’offre choisie.</p></section>',
+    '<section><h3>10. Disponibilité, maintenance et signalement</h3><p>L’Éditeur met en œuvre des moyens raisonnables pour assurer la disponibilité et la sécurité du Service. Des interruptions peuvent survenir, notamment lors d’une maintenance ou d’un incident affectant un prestataire technique. L’Éditeur informe le Client à l’avance des maintenances programmées susceptibles d’affecter sensiblement son accès, lorsque les circonstances le permettent.</p> <p>Le Client peut signaler une erreur de génération, une indisponibilité ou un incident de diffusion à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>. L’Éditeur examine le signalement. Lorsqu’un dysfonctionnement est identifié, il met en œuvre des mesures raisonnables pour le corriger ou proposer une solution de contournement. Si un contenu erroné a déjà été diffusé, le Client décide des corrections ou demandes de retrait qui relèvent de lui.</p></section>',
+    '<section><h3>11. Défaillance du Service et responsabilité</h3><p>Il est à la charge du client de valider que son infrastructure technique et ses règles techniques lui permettent bien d’utiliser le service dans les meilleures conditions sans entraver le bon fonctionnement de l’application. Si une fonctionnalité essentielle de l’offre payante reste inutilisable et qu’aucune solution équivalente n’est proposée dans un délai raisonnable après mise en demeure, le Client peut résilier l’abonnement concerné. L’Éditeur rembourse au prorata la période payée restant à courir à la date d’effet de la résiliation. Les autres recours prévus par la loi demeurent applicables.</p> <p>Chaque partie répond des dommages directs, certains et justifiés causés par ses manquements. Lorsqu’un défaut de vérification ou une diffusion contraire aux présentes conditions a contribué au dommage, il en est tenu compte à proportion de sa contribution.</p></section>',
+    '<section><h3>12. Suspension de l’accès</h3><p>En cas de manquement, l’Éditeur informe le Client des faits reprochés et lui accorde un délai adapté pour y remédier. Si le manquement persiste, l’Éditeur peut suspendre l’accès concerné ou, en cas de manquement suffisamment grave, résilier le contrat dans les conditions prévues par la loi.</p> <p>L’Éditeur peut suspendre immédiatement l’accès si une mesure urgente est nécessaire pour protéger les données ou la sécurité du Service, ou pour satisfaire à une obligation légale. La suspension est limitée à ce qui est nécessaire. L’Éditeur en informe le Client dès que les circonstances le permettent.</p></section>',
+    '<section><h3>13. Données personnelles et fin d’accès</h3><p>La politique de confidentialité décrit les traitements de données personnelles, leurs finalités, les destinataires, les durées de conservation et les modalités d’exercice des droits. Lorsque l’Éditeur traite des données personnelles pour le compte du Client, un accord de sous-traitance précise les conditions de ce traitement conformément à l’article 28 du RGPD.</p> <p>Le Client peut demander la suppression de ses données à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>. La clôture définitive met fin à l’accès au compte, sous réserve des modalités de restitution applicables et des obligations légales de conservation.</p></section>',
+    '<section><h3>14. Modification des conditions et des tarifs</h3><p>L’Éditeur informe le Client de toute modification substantielle des conditions ou des tarifs avant son entrée en vigueur. Les offres sur devis suivent les règles de modification prévues dans le contrat applicable.</p></section>',
+    '<section><h3>15. Droit applicable, litiges et contact</h3><p>Les présentes conditions sont soumises au droit français. En cas de différend, les parties peuvent rechercher une solution amiable. Cette démarche ne fait pas obstacle aux mesures urgentes ni au respect des délais applicables.</p> <p>La juridiction compétente est déterminée selon les règles légales applicables, y compris celles qui régissent les contrats administratifs.</p> <p>Les demandes relatives au Service ou aux présentes conditions sont à adresser à <a href="mailto:contact@assistant-rp.com">contact@assistant-rp.com</a>.</p></section>',
+  ].join("");
+
+  /* Mentions légales / confidentialité — FABS PARTNERS immatriculée le
      29/10/2026 (Kbis, RCS Paris 132 151 747). Contenu de premier jet, pas une
      validation juridique : à relire (idéalement avec un avocat) avant toute
      publication, en particulier le directeur de la publication, pris ici par
      défaut comme le président (choix le plus sûr par défaut en droit
-     français, à confirmer ou corriger par Bruno s'il délègue ce rôle). */
+     français, à confirmer ou corriger par Bruno s'il délègue ce rôle).
+     L'entrée « Conditions générales d'utilisation » a été retirée d'ici le
+     17/11 : elle est maintenant gérée par CGU_HTML ci-dessus, dans
+     patchLegalContent(). */
   var LEGAL_CONTENT = {
     "Mentions légales": {
       sections: [
@@ -147,40 +185,28 @@
           "non. Vous pouvez modifier votre choix à tout moment via le lien « Gérer mes " +
           "cookies » en pied de page."]
       ]
-    },
-    "Conditions générales d’utilisation": {
-      sections: [
-        ["Objet et accès au service",
-          "Assistant-RP est une plateforme éditée par FABS PARTNERS, permettant aux " +
-          "professionnels des relations presse de produire des documents et contenus à " +
-          "l’aide de modules dédiés. L’accès est réservé aux personnes ayant créé un compte " +
-          "et souscrit à une offre payante ou à un essai, selon les conditions tarifaires en " +
-          "vigueur présentées sur ce site."],
-        ["Utilisation de la plateforme",
-          "Chaque utilisateur est responsable de la confidentialité de ses identifiants et " +
-          "de l’usage fait de son compte. Les documents et contenus déposés ou produits via " +
-          "la plateforme restent la propriété de l’utilisateur ou de son client ; FABS " +
-          "PARTNERS n’en revendique aucun droit, sous réserve des moyens techniques " +
-          "nécessaires à leur traitement par le service. Il est interdit d’utiliser la " +
-          "plateforme à des fins illicites ou de tenter d’en perturber le fonctionnement."],
-        ["Responsabilités et contact",
-          "FABS PARTNERS s’engage à apporter un soin raisonnable au bon fonctionnement du " +
-          "service, sans garantir une disponibilité ininterrompue. Sa responsabilité ne " +
-          "saurait être engagée en cas d’usage non conforme du service par l’utilisateur. " +
-          "Les présentes conditions sont soumises au droit français ; à défaut de résolution " +
-          "amiable, les tribunaux du ressort du siège social de FABS PARTNERS seront seuls " +
-          "compétents. Contact : contact@assistant-rp.com."]
-      ]
     }
   };
 
   function patchLegalContent() {
     var titre = document.getElementById("legal-title");
     if (!titre) return false;
-    var contenu = LEGAL_CONTENT[titre.textContent.trim()];
-    if (!contenu) return false;
+    var libelle = titre.textContent.trim();
     var corps = titre.closest(".legal-content");
     if (!corps || corps.getAttribute("data-legal-patched") === "1") return false;
+
+    // CGU : texte complet, pas les 2-3 sections que prévoyait la mise en
+    // page d'origine — on remplace tout le contenu plutôt que de boucler
+    // sur des <section> déjà en place (il y en a plus ici que dans les
+    // deux autres popins). Voir la note au-dessus de CGU_HTML.
+    if (libelle === "Conditions générales d’utilisation") {
+      corps.innerHTML = CGU_HTML;
+      corps.setAttribute("data-legal-patched", "1");
+      return true;
+    }
+
+    var contenu = LEGAL_CONTENT[libelle];
+    if (!contenu) return false;
     var notice = corps.querySelector(".legal-notice");
     if (notice) notice.remove();
     var sections = corps.querySelectorAll("section");
@@ -439,6 +465,19 @@
     return true;
   }
 
+  // Demande de Bruno (17/11) : retirer le bandeau "En complément" (le livre
+  // aux Éditions Kawa) — un article de blog couvre déjà le sujet. Le bloc a
+  // un id stable (#pour-aller-plus-loin), repéré en inspectant la page en
+  // ligne plutôt que deviné : plus sûr qu'un couplage au texte visible, qui
+  // changerait si le livre ou la mise en avant changent. On masque plutôt
+  // que de supprimer, pour pouvoir le faire réapparaître d'un coup en CSS.
+  function patchMasquerLivre() {
+    var bandeau = document.getElementById("pour-aller-plus-loin");
+    if (!bandeau || bandeau.style.display === "none") return false;
+    bandeau.style.display = "none";
+    return true;
+  }
+
   function runAll() {
     patchCibles();
     patchFaq();
@@ -450,6 +489,7 @@
     patchLiensSouscription();
     patchPageview();
     patchCtaTracking();
+    patchMasquerLivre();
   }
 
   // Le site est une SPA React : le contenu n'existe pas encore au chargement du script.
