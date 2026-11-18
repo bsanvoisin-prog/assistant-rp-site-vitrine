@@ -397,7 +397,7 @@
     if (!navLinks || navLinks.querySelector('a[href="/blog/"]')) return false;
     var a = document.createElement("a");
     a.href = "/blog/";
-    a.textContent = "Blog";
+    a.textContent = "Le blog";
     navLinks.appendChild(a);
     return true;
   }
