@@ -10,6 +10,11 @@
       trackable pour Brevo : assistant-rp.com/#cgu.
    4. (17/11) Masque le bandeau "En complément" (livre aux Éditions Kawa) :
       un article de blog couvre déjà le sujet, demande de Bruno.
+   5. (18/11) Popin "Demander une démo" : les boutons "Demander une démo"
+      (il y en a deux sur la home, Fred confirme qu'il n'y en a aucun sur le
+      blog) ouvraient jusqu'ici le client mail (mailto:). Ils ouvrent
+      désormais une fenêtre modale avec le formulaire Brevo "Inscription à
+      la Démo" fourni par Fred, en iframe (voir DEMO_FORM_URL plus bas).
    (Le correctif forçant l'affichage de "42 modules" a été retiré le
    23/10/2026 : décision d'équipe de ne plus afficher de comptage précis.)
    ========================================================================== */
@@ -533,6 +538,96 @@
     return true;
   }
 
+  // Popin "Demander une démo" (18/11, demande Fred/Bruno). Les boutons
+  // "Demander une démo" (deux sur la home : hero + tarifs ; aucun sur le
+  // blog) étaient de simples mailto:. On les intercepte pour ouvrir une
+  // fenêtre modale contenant le formulaire Brevo "Inscription à la Démo",
+  // en iframe pointant directement vers l'URL "serve" du formulaire —
+  // c'est elle qui sert la page Brevo complète (CSS, reCAPTCHA, script de
+  // validation inclus), donc pas besoin de recopier tout le code
+  // d'intégration fourni par Fred dans le site, ce qui aurait pollué le
+  // CSS global (ex. : la règle "#sib-container a{text-decoration:underline}"
+  // du snippet Brevo est globale, pas scopée) et risqué de charger
+  // plusieurs fois le script reCAPTCHA si la popin est ouverte/fermée
+  // plusieurs fois. Réutilise le même habillage visuel que les popins CGU
+  // / Mentions légales / Confidentialité (classe .legal-modal déjà stylée
+  // dans le site : coins arrondis, fond flouté, <dialog> natif qui gère
+  // seul la touche Échap) ; seule la classe .demo-modal est ajoutée pour
+  // les quelques ajustements propres à l'iframe (voir DEMO_MODAL_STYLE).
+  // Le href mailto d'origine reste en place sur les boutons : c'est le
+  // secours si JS ne tourne pas, et ça ne coûte rien de le garder.
+  var DEMO_FORM_URL = "https://83d1a043.sibforms.com/serve/MUIFAKk4AOBFLl4Jhh7Fh1dNJAdmXoqQBK3Nz6meJQf6IFXh5gylkN5DUhZ3pznqFy7jemu8G4OsG16z4sXsGlhQJTm8fbBu9UXyXEn2tdBhwRngBnCytU5M6HNMl2KkFd5jIZiBqup0qG98aSdizXxngRehK95JRP0VPOoM_Rn-73HYLpNK3xtpICSrI5jcC97bDRAmwn1rV_4Clg==";
+
+  var DEMO_MODAL_STYLE =
+    ".demo-modal{position:relative;padding:0;width:min(620px, -32px + 100vw)}" +
+    ".demo-modal .legal-close{position:absolute;top:14px;right:14px;margin:0;z-index:3}" +
+    ".demo-modal-body{line-height:0}" +
+    ".demo-modal-body iframe{display:block;width:100%;height:min(80dvh,840px);border:0}" +
+    "@media(max-width:640px){" +
+    ".demo-modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}" +
+    ".demo-modal-body iframe{height:100dvh}" +
+    "}";
+
+  function getDemoModal() {
+    var dlg = document.getElementById("demo-modal");
+    if (dlg) return dlg;
+
+    if (!document.getElementById("demo-modal-style")) {
+      var style = document.createElement("style");
+      style.id = "demo-modal-style";
+      style.textContent = DEMO_MODAL_STYLE;
+      document.head.appendChild(style);
+    }
+
+    dlg = document.createElement("dialog");
+    dlg.id = "demo-modal";
+    dlg.className = "legal-modal demo-modal";
+    dlg.setAttribute("aria-label", "Demander une démo");
+    dlg.innerHTML =
+      '<button type="button" class="legal-close" aria-label="Fermer la fenêtre">' +
+      '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>' +
+      "</button>" +
+      '<div class="demo-modal-body"><iframe title="Formulaire de demande de démo Assistant-RP" loading="lazy" scrolling="auto"></iframe></div>';
+    document.body.appendChild(dlg);
+
+    dlg.querySelector(".legal-close").addEventListener("click", function () {
+      dlg.close();
+    });
+    // Un <dialog> natif n'a pas de fermeture au clic sur le fond par
+    // défaut : le clic sur ::backdrop remonte sur le <dialog> lui-même
+    // (jamais sur son contenu), donc ce test suffit à distinguer les deux.
+    dlg.addEventListener("click", function (e) {
+      if (e.target === dlg) dlg.close();
+    });
+
+    return dlg;
+  }
+
+  function ouvrirDemoModal() {
+    var dlg = getDemoModal();
+    var iframe = dlg.querySelector("iframe");
+    if (!iframe.getAttribute("src")) iframe.setAttribute("src", DEMO_FORM_URL);
+    if (typeof dlg.showModal === "function") dlg.showModal();
+    else dlg.setAttribute("open", "");
+  }
+
+  function patchDemoModal() {
+    if (document.documentElement.getAttribute("data-demo-modal-patched") === "1") return false;
+    document.addEventListener(
+      "click",
+      function (e) {
+        var a = e.target.closest("a");
+        if (!a) return;
+        if ((a.textContent || "").trim() !== "Demander une démo") return;
+        e.preventDefault();
+        ouvrirDemoModal();
+      },
+      true
+    );
+    document.documentElement.setAttribute("data-demo-modal-patched", "1");
+    return true;
+  }
+
   function runAll() {
     patchCibles();
     patchFaq();
@@ -547,6 +642,7 @@
     patchMasquerLivre();
     patchFooterSocial();
     patchBannerTutos();
+    patchDemoModal();
   }
 
   // Le site est une SPA React : le contenu n'existe pas encore au chargement du script.
