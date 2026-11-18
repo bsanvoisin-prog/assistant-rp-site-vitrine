@@ -477,11 +477,18 @@
         ".footer-social a{display:inline-flex;color:var(--secondary,#60615b)}" +
         ".footer-social a:hover{color:var(--ink,#1a1a1a)}" +
         ".footer-social svg{width:25px;height:25px}" +
-        "@media(min-width:641px){" +
+        // Le seuil est volontairement plus haut que les autres breakpoints du
+        // site (1100px et non 641px) : en dessous, le menu de mentions
+        // légales (~680px avec ses espacements) + la marque + les icônes ne
+        // tiennent pas sur une seule ligne. Sous ce seuil, on garde la mise
+        // en page mobile d'origine (colonnes empilées en pleine largeur),
+        // où chaque lien peut s'étaler sur sa propre largeur sans contrainte.
+        "@media(min-width:1100px){" +
         "footer.wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px}" +
-        "footer.wrap>div{flex:none;min-width:0}" +
-        "footer.wrap>div:first-child{justify-self:start}" +
-        "footer.wrap>div.footer-col-legal{justify-self:center;white-space:nowrap;flex-wrap:nowrap}" +
+        "footer.wrap>div:first-child{justify-self:start;white-space:nowrap}" +
+        "footer.wrap>div:first-child span{white-space:nowrap}" +
+        "footer.wrap>div.footer-col-legal{justify-self:center;white-space:nowrap}" +
+        "footer.wrap>div.footer-col-legal .legal-link,footer.wrap>div.footer-col-legal a{white-space:nowrap}" +
         "footer.wrap>div.footer-col-social{justify-self:end}" +
         "}";
       document.head.appendChild(style);
