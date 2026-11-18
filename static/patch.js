@@ -451,27 +451,54 @@
 
   // Icônes dans le footer, à côté du logo/copyright (pas mélangées aux liens
   // légaux de droite) : présence de base, cohérente sur toutes les pages.
+  // Demande de Bruno (18/11) : pictos à 25px, poussés tout à droite du
+  // footer, et le menu légal (Mentions légales…) centré. Le footer n'avait
+  // que 2 colonnes (marque | menu légal), poussées aux extrémités par
+  // justify-content:space-between sur <footer>. On passe à 3 colonnes à
+  // largeur égale (flex:1 chacune), chacune alignant son contenu à gauche /
+  // au centre / à droite — la façon standard d'avoir un centre vraiment
+  // centré dans la largeur totale, peu importe la largeur du contenu de
+  // gauche et de droite. Limité à partir de 641px : en dessous, la mise en
+  // page mobile d'origine (colonnes empilées en pleine largeur) reste
+  // inchangée, pour ne pas entrer en conflit avec elle.
   function patchFooterSocial() {
     var brand = document.querySelector("footer .brand");
     if (!brand) return false;
-    var groupe = brand.parentElement;
-    if (!groupe || groupe.querySelector(".footer-social")) return false;
+    var colMarque = brand.parentElement;
+    var footer = colMarque && colMarque.closest("footer");
+    if (!footer) return false;
+    var colLegal = colMarque.nextElementSibling;
+    if (!colLegal) return false;
     if (!document.getElementById("footer-social-style")) {
       var style = document.createElement("style");
       style.id = "footer-social-style";
-      style.textContent = ".footer-social{display:inline-flex;align-items:center;gap:12px;margin-left:4px}" +
+      style.textContent =
+        ".footer-social{display:inline-flex;align-items:center;gap:12px}" +
         ".footer-social a{display:inline-flex;color:var(--secondary,#60615b)}" +
         ".footer-social a:hover{color:var(--ink,#1a1a1a)}" +
-        ".footer-social svg{width:20px;height:20px}";
+        ".footer-social svg{width:25px;height:25px}" +
+        "@media(min-width:641px){" +
+        "footer.wrap>div{flex:1}" +
+        "footer.wrap>div:first-child{justify-content:flex-start}" +
+        "footer.wrap>div.footer-col-legal{justify-content:center}" +
+        "footer.wrap>div.footer-col-social{justify-content:flex-end}" +
+        "}";
       document.head.appendChild(style);
     }
-    var conteneur = document.createElement("span");
-    conteneur.className = "footer-social";
-    conteneur.innerHTML =
-      '<a href="https://www.linkedin.com/company/assistant-rp/" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur LinkedIn">' + ICON_LINKEDIN + '</a>' +
-      '<a href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur YouTube">' + ICON_YOUTUBE + '</a>';
-    groupe.appendChild(conteneur);
-    return true;
+    colLegal.classList.add("footer-col-legal");
+    if (!footer.querySelector(".footer-col-social")) {
+      var colSocial = document.createElement("div");
+      colSocial.className = "footer-col-social";
+      var conteneur = document.createElement("span");
+      conteneur.className = "footer-social";
+      conteneur.innerHTML =
+        '<a href="https://www.linkedin.com/company/assistant-rp/" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur LinkedIn">' + ICON_LINKEDIN + '</a>' +
+        '<a href="https://www.youtube.com/@assistant-rp" target="_blank" rel="noopener noreferrer" aria-label="Assistant-RP sur YouTube">' + ICON_YOUTUBE + '</a>';
+      colSocial.appendChild(conteneur);
+      footer.appendChild(colSocial);
+      return true;
+    }
+    return false;
   }
 
   // Bandeau "Nos tutos en vidéo" sur le blog seulement (pas le footer tout
