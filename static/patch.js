@@ -478,10 +478,11 @@
         ".footer-social a:hover{color:var(--ink,#1a1a1a)}" +
         ".footer-social svg{width:25px;height:25px}" +
         "@media(min-width:641px){" +
-        "footer.wrap>div{flex:1}" +
-        "footer.wrap>div:first-child{justify-content:flex-start}" +
-        "footer.wrap>div.footer-col-legal{justify-content:center}" +
-        "footer.wrap>div.footer-col-social{justify-content:flex-end}" +
+        "footer.wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px}" +
+        "footer.wrap>div{flex:none;min-width:0}" +
+        "footer.wrap>div:first-child{justify-self:start}" +
+        "footer.wrap>div.footer-col-legal{justify-self:center;white-space:nowrap;flex-wrap:nowrap}" +
+        "footer.wrap>div.footer-col-social{justify-self:end}" +
         "}";
       document.head.appendChild(style);
     }
