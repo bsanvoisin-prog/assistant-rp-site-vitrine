@@ -9,7 +9,7 @@ excerpt: "L'intelligence artificielle générative s'intègre progressivement da
   adoption soulève toutefois des questions très concrètes sur la
   confidentialité, la fiabilité des contenus et la responsabilité
   professionnelle. Comment tirer parti de l'IA tout en respectant les exigences
-  déontologiques des relations médias "
+  déontologiques des relations médias  "
 cover: /blog/uploads/assistant_rp_illustration_blog_ia_relations_presse-1-.webp
 author: L'équipe Assistant-RP
 tags: post
