@@ -15,6 +15,10 @@
       blog) ouvraient jusqu'ici le client mail (mailto:). Ils ouvrent
       désormais une fenêtre modale avec le formulaire Brevo "Inscription à
       la Démo" fourni par Fred, en iframe (voir DEMO_FORM_URL plus bas).
+   6. (19/11) assistant-rp.com/#demo ouvre directement la popin "Demander
+      une démo" au chargement — même mécanique que #cgu (point 3) : un lien
+      direct à partager tel quel (groupes WhatsApp, relances), sans passer
+      par la home. Voir patchOuvrirDemoDepuisHash plus bas.
    (Le correctif forçant l'affichage de "42 modules" a été retiré le
    23/10/2026 : décision d'équipe de ne plus afficher de comptage précis.)
    ========================================================================== */
@@ -628,6 +632,21 @@
     return true;
   }
 
+  // (19/11) #demo ouvre directement la popin au chargement — lien à
+  // partager tel quel (demande Fred, via les groupes WhatsApp). Même
+  // logique que patchOuvrirDepuisHash pour #cgu/#mentions/#confidentialite,
+  // mais plus simple : la popin "Demander une démo" est à nous (créée par
+  // patchDemoModal, pas par main.js), donc pas besoin d'attendre qu'un
+  // bouton du pied de page soit monté ni de simuler un clic dessus — on
+  // appelle directement ouvrirDemoModal().
+  function patchOuvrirDemoDepuisHash() {
+    if (document.documentElement.getAttribute("data-hash-demo-done") === "1") return false;
+    if (location.hash !== "#demo") return false;
+    document.documentElement.setAttribute("data-hash-demo-done", "1");
+    ouvrirDemoModal();
+    return true;
+  }
+
   function runAll() {
     patchCibles();
     patchFaq();
@@ -643,6 +662,7 @@
     patchFooterSocial();
     patchBannerTutos();
     patchDemoModal();
+    patchOuvrirDemoDepuisHash();
   }
 
   // Le site est une SPA React : le contenu n'existe pas encore au chargement du script.
