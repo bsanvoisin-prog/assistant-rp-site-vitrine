@@ -19,6 +19,14 @@
       une démo" au chargement — même mécanique que #cgu (point 3) : un lien
       direct à partager tel quel (groupes WhatsApp, relances), sans passer
       par la home. Voir patchOuvrirDemoDepuisHash plus bas.
+   7. (20/11) Correctif : #demo et #cgu (et #mentions/#confidentialite) ne
+      s'ouvraient qu'à la DEUXIÈME touche Entrée dans la barre d'adresse
+      quand un onglet était déjà ouvert sur assistant-rp.com. Cause : une
+      navigation qui ne change que le hash ne recharge pas la page, donc ne
+      relance jamais runAll() — ni l'exécution immédiate, ni le
+      MutationObserver, ni les setTimeout de secours ne réagissent à un
+      hashchange seul. Un unique listener hashchange en bas de fichier
+      couvre toutes les popins à la fois.
    (Le correctif forçant l'affichage de "42 modules" a été retiré le
    23/10/2026 : décision d'équipe de ne plus afficher de comptage précis.)
    ========================================================================== */
@@ -678,4 +686,16 @@
   [300, 800, 1500, 3000].forEach(function (ms) {
     setTimeout(runAll, ms);
   });
+
+  // Correctif du 20/11 : une navigation qui ne change QUE le hash (onglet déjà
+  // ouvert sur assistant-rp.com, ex. taper .../#demo dans la barre d'adresse
+  // pendant que la home est déjà chargée) ne recharge pas la page : aucune des
+  // trois mécaniques ci-dessus (exécution immédiate, MutationObserver,
+  // setTimeout) ne se déclenche sur un simple hashchange. Symptôme observé :
+  // la popin #demo (et #cgu, même bug) ne s'ouvre qu'à la DEUXIÈME Entrée dans
+  // la barre d'adresse — la première ne fait que changer le hash sans
+  // recharger, la seconde recharge vraiment la page. Un seul listener
+  // hashchange couvre #demo ET #cgu/#mentions/#confidentialite d'un coup,
+  // puisque runAll() relance les deux vérifications de hash.
+  window.addEventListener("hashchange", runAll);
 })();
