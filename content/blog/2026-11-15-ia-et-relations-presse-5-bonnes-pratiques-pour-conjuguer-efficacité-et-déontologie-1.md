@@ -1,15 +1,12 @@
 ---
 title: "IA et relations presse : 5 bonnes pratiques pour conjuguer efficacité et
   déontologie"
-date: 2026-11-16
-excerpt: "L'intelligence artificielle générative s'intègre progressivement dans
-  le quotidien des agences et des professionnels des relations presse. Rédaction
-  de communiqués, préparation d'argumentaires, veille, analyse des retombées :
-  les applications se multiplient et les méthodes de travail évoluent. Cette
-  adoption soulève toutefois des questions très concrètes sur la
-  confidentialité, la fiabilité des contenus et la responsabilité
-  professionnelle. Comment tirer parti de l'IA tout en respectant les exigences
-  déontologiques des relations médias  "
+date: 2026-11-20
+excerpt: L’IA générative transforme les pratiques des relations presse, de la
+  rédaction à l’analyse des retombées médias. Son adoption soulève néanmoins des
+  enjeux de confidentialité, de fiabilité et de responsabilité. Comment
+  exploiter son potentiel tout en respectant les exigences déontologiques du
+  métier ?
 cover: /blog/uploads/assistant_rp_illustration_blog_ia_relations_presse-1-.webp
 author: L'équipe Assistant-RP
 tags: post
