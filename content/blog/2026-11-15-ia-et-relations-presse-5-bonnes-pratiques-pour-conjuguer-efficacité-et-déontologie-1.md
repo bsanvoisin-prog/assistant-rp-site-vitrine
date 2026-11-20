@@ -1,7 +1,7 @@
 ---
 title: "IA et relations presse : 5 bonnes pratiques pour conjuguer efficacité et
   déontologie"
-date: 2026-11-16
+date: 2026-11-20
 excerpt: L’IA générative transforme les pratiques des relations presse, de la
   rédaction à l’analyse des retombées médias. Son adoption soulève néanmoins des
   enjeux de confidentialité, de fiabilité et de responsabilité. Comment
