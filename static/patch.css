@@ -163,3 +163,39 @@ html body #tarteaucitronRoot :is(
 }
 
 /* FIN — ASSISTANT RP — SITE VITRINE — BOUTONS COOKIES VERTS */
+
+/* =============================================================
+   ASSISTANT RP — SITE VITRINE — « SE CONNECTER » INVISIBLE EN MOBILE
+   Ajouté le 23/11/2026 (signalé par Bruno : CTA « créer un compte » visible
+   sur mobile, « se connecter » absent).
+
+   Cause exacte, vérifiée dans le bundle React (main.css + main.js) : sous
+   850px, main.css masque .nav-links ET .nav-actions .login (règle unique,
+   non dupliquée à une largeur plus étroite — vérifié). Le bouton hamburger
+   ne rouvre que .nav-links (classe "open" posée par le composant React sur
+   CE SEUL conteneur, voir le bundle main.js) — .nav-actions .login, qui vit
+   dans un conteneur frère, ne repasse jamais visible, quel que soit l'état
+   du menu. « Créer un compte » reste visible car il porte une autre classe
+   (.nav-signup), jamais ciblée par cette règle.
+
+   Correctif testé en direct (viewport mobile, 375px) : simplement rendre ce
+   lien visible, sans toucher au reste de la ligne — .nav-actions garde déjà
+   nativement assez de marge (gap existant, bouton déjà resserré en mobile
+   par main.css lui-même) pour accueillir ce texte sans rien faire déborder
+   ni passer à la ligne. Aucune modification du bundle React nécessaire : ce
+   lien existe déjà dans le DOM, seul son display était bloqué.
+
+   Si un jour une maquette mobile refaite range "Se connecter" DANS le menu
+   déroulant plutôt qu'à côté du bouton "Créer un compte", ce correctif
+   devient inutile et peut être retiré sans rien casser d'autre.
+   ============================================================= */
+
+@media(max-width:850px){
+  .nav-actions .login{
+    display:inline-flex !important;
+    font-size:12px;
+    white-space:nowrap;
+  }
+}
+
+/* FIN — ASSISTANT RP — SITE VITRINE — « SE CONNECTER » INVISIBLE EN MOBILE */
