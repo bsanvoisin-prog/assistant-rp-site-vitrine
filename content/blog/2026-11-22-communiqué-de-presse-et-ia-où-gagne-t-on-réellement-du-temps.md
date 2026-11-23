@@ -1,12 +1,13 @@
 ---
 title: "Communiqué de presse et IA : où gagne-t-on réellement du temps ?"
 date: 2026-11-23
-excerpt: "La rédaction d'un communiqué de presse commence rarement devant une
-  page blanche. Présentations commerciales, fiches produits, comptes rendus
-  d'interviews, documents techniques : le travail consiste souvent à extraire,
-  recouper et hiérarchiser des informations issues de plusieurs sources. C'est
-  précisément sur ces étapes que l'intelligence artificielle présente un intérêt
-  pour les professionnels des RP."
+excerpt: "La rédaction d'un cCP commence rarement devant une page blanche.
+  Powerpoint, fiches produits, comptes rendus d'interviews, documents techniques
+  : le travail consiste souvent à extraire, recouper et hiérarchiser des
+  informations issues de plusieurs sources. C'est précisément sur ces étapes que
+  l'intelligence artificielle présente un intérêt pour les professionnels des
+  RP."
+cover: /blog/uploads/gagner-du-temps-avec-l’ia-et-la-presse.png
 author: L'équipe Assistant-RP
 tags: post
 ---
@@ -39,3 +40,5 @@ L'objectif est de faciliter la production documentaire et rédactionnelle, tout 
 Le bénéfice recherché est concret : consacrer moins de temps aux opérations préparatoires et davantage au contenu et à sa pertinence médiatique.
 
 **Dans le prochain épisode : comment garder la maîtrise éditoriale d'un communiqué rédigé avec l'IA.**
+
+*Demandez une démo pour découvrir Assistant-RP.*
