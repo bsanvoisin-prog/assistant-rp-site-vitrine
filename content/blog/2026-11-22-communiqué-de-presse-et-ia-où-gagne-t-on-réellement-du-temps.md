@@ -6,7 +6,7 @@ excerpt: Powerpoint, fiches produits, comptes rendus d'interviews, documents
   hiérarchiser des informations issues de plusieurs sources, puis dégager des
   angles. C'est précisément sur ces étapes que l'intelligence artificielle
   présente un intérêt pour les professionnels des RP.
-cover: ""
+cover: /blog/uploads/gagner_du_temps_avec_l_ia_et_la_presse_800px.webp
 author: L'équipe Assistant-RP
 tags: post
 ---
