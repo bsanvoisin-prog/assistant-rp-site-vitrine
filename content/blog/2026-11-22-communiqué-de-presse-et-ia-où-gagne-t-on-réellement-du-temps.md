@@ -1,19 +1,18 @@
 ---
 title: "Communiqué de presse et IA : où gagne-t-on réellement du temps ?"
-date: 2026-11-23
-excerpt: "La rédaction d'un cCP commence rarement devant une page blanche.
-  Powerpoint, fiches produits, comptes rendus d'interviews, documents techniques
-  : le travail consiste souvent à extraire, recouper et hiérarchiser des
-  informations issues de plusieurs sources. C'est précisément sur ces étapes que
-  l'intelligence artificielle présente un intérêt pour les professionnels des
-  RP."
+date: 2026-11-26
+excerpt: Powerpoint, fiches produits, comptes rendus d'interviews, documents
+  techniques... la rédaction d'un CP consiste souvent à extraire, recouper et
+  hiérarchiser des informations issues de plusieurs sources, puis dégager des
+  angles. C'est précisément sur ces étapes que l'intelligence artificielle
+  présente un intérêt pour les professionnels des RP.
 cover: /blog/uploads/gagner-du-temps-avec-l’ia-et-la-presse.png
 author: L'équipe Assistant-RP
 tags: post
 ---
 ## **Le temps de préparation, premier levier de productivité**
 
-Prenons un cas fréquent en RP : un client industriel annonce une nouvelle solution technique. Il transmet trois présentations PowerPoint dont un en anglais, deux fiches produits et quelques notes prises lors d'un entretien avec le directeur marketing.
+Prenons un cas fréquent en Relations Presse : un client industriel annonce une nouvelle solution technique. Il transmet trois présentations PowerPoint dont une en anglais, deux fiches produits et quelques notes prises lors d'un entretien avec le directeur marketing.
 
 Avant de rédiger, l'attaché de presse doit parcourir cette documentation, identifier les informations nouvelles, distinguer les caractéristiques techniques des arguments commerciaux et repérer les éventuelles incohérences.
 
@@ -41,4 +40,4 @@ Le bénéfice recherché est concret : consacrer moins de temps aux opérations 
 
 **Dans le prochain épisode : comment garder la maîtrise éditoriale d'un communiqué rédigé avec l'IA.**
 
-*Demandez une démo pour découvrir Assistant-RP.*
+*[Demandez une démo ](https://deploy-preview-11--charming-klepon-f8a3c3.netlify.app/#apercu)pour découvrir Assistant-RP.*
